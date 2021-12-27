@@ -1,0 +1,8 @@
+.profile__edit-btn {
+    background-image: url("../../../images/Edit-Button.png");
+    background-size: 20px 20px;
+    background-color: black;
+    height: 24px;
+    width: 24px;
+    justify-self: first baseline;
+}
