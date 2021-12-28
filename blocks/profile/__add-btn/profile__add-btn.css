@@ -6,3 +6,18 @@
     width: 150px;
     justify-self: flex-end;
 }
+
+@media screen and (max-width: 768px) {
+    .profile__add-btn {
+        margin-top: 36px;
+        width: 403.5px;
+        background-size: 399.5px 46px;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .profile__add-btn {
+        width: 282px;
+        background-size: 278px 46px;
+    }
+}
