@@ -1,0 +1,22 @@
+.edit-profile-form__group {
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    margin: 29.74px 36px 0;
+    padding: 0 0 13.34px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    width: 358px;
+}
+
+@media screen and (max-width: 730px) {
+    .edit-profile-form__group {
+        font-size: 14px;
+        line-height: 17px;
+        margin: 30px 22px 0 22px;
+        padding: 0 0 9px 0;
+        width: 238px;
+    }
+}

@@ -1,0 +1,22 @@
+.edit-profile-form__cancel {
+    background-color: black;
+    background-image: url("../../../images/Close-Icon.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    border: none;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    right: -40px;
+    top: -40px;
+}
+
+@media screen and (max-width: 730px) {
+    .edit-profile-form__cancel {
+        top: -39.62px;
+        /*-13.62-26=-39.62*/
+        width: 26px;
+        height: 26px;
+        right: 0px;
+    }
+}

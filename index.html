@@ -20,11 +20,22 @@
         <section class="profile">
             <img class="profile__avatar profile__avatar_shape_elipse" src="./images/avatar.jpg" alt="avatar of contributer">
             <div class="profile__info">
-                <h1 class="profile__name">Jacques Cousteau <button class="profile__edit-btn"></button></h1>
-
+                <div class="profile__top-line">
+                    <h1 class="profile__name">Jacques Cousteau </h1>
+                    <button class="profile__edit-btn"></button>
+                </div>
                 <p class="profile__group">Explorer</p>
             </div>
             <button class="profile__add-btn"></button>
+            <div class="profile__overlay">
+                <form class="edit-profile-form">
+                    <p class="edit-profile-form__label">Edit Profile</p>
+                    <input type="text" class="edit-profile-form__name" placeholder=""></input>
+                    <input type="text" class="edit-profile-form__group" placeholder=""></input>
+                    <button type="submit" class="edit-profile-form__save" name="save" value="Save">Save</button>
+                    <button type="cancel" class="edit-profile-form__cancel" name="cancel" value="Cancel"></button>
+                </form>
+            </div>
         </section>
         <section class="elements">
             <div class="element">
@@ -78,6 +89,7 @@
         </section>
     </main>
     <footer class="footer">
-        <p class="copyright">&copy; 2021 Around The U.S. By David Avraham</p>
+        <p class="copyright">&copy; 2021 Around The U.S. by David Avraham</p>
     </footer>
+    <script src="./scripts/script.js"></script>
 </body>

@@ -13,10 +13,21 @@
 @import url("../blocks/profile/__avatar/profile__avatar.css");
 @import url("../blocks/profile/__avatar/_shape/profile__avatar_shape_elipse.css");
 @import url("../blocks/profile/__info/profile__info.css");
+@import url("../blocks/profile/__top-line/profile__top-line.css");
 @import url("../blocks/profile/__name/profile__name.css");
 @import url("../blocks/profile/__edit-btn/profile__edit-btn.css");
 @import url("../blocks/profile/__group/profile__group.css");
 @import url("../blocks/profile/__add-btn/profile__add-btn.css");
+
+/**/
+
+@import url("../blocks/profile/__overlay/profile__overlay.css");
+@import url("../blocks/edit-profile-form/edit-profile-form.css");
+@import url("../blocks/edit-profile-form/__label/edit-profile-form__label.css");
+@import url("../blocks/edit-profile-form/__name/edit-profile-form__name.css");
+@import url("../blocks/edit-profile-form/__group/edit-profile-form__group.css");
+@import url("../blocks/edit-profile-form/__save/edit-profile-form__save.css");
+@import url("../blocks/edit-profile-form/__cancel/edit-profile-form__cancel.css");
 
 /**/
 

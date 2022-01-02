@@ -4,5 +4,10 @@
     background-color: black;
     height: 24px;
     width: 24px;
+    margin-left: 18px;
     justify-self: first baseline;
+}
+
+.profile__edit-btn:hover {
+    cursor: pointer;
 }

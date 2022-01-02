@@ -1,0 +1,23 @@
+.edit-profile-form__save {
+    width: 358px;
+    height: 50.15px;
+    background: #000000;
+    color: #FFFFFF;
+    border-radius: 2px;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    margin: 48px 36px 36.51px;
+    padding: 0;
+}
+
+@media screen and (max-width: 730px) {
+    .edit-profile-form__save {
+        width: 234px;
+        height: 42px;
+        font-size: 14px;
+        line-height: 17px;
+        margin: 46px 22px 25px 22px;
+    }
+}
