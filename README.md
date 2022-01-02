@@ -1,16 +1,15 @@
 # Project 4: Around The U.S.
 
-### Overview
+## Description of Project and Functionality:
+A site for presenting someones photography / art.
+Current functionality includes changing the name and group / occupation. 
+Future functionality will include: 
+-adding and changing photos / art. 
+-liking individual photos / art.
 
-* Figma
-* Images
+## Description of Technologies and Techniques used:
+Design was taken from a Figma file and implemented with HTML, CSS and JavaScript.
+CSS styles named and filed according to BEM methodology.
 
-**Figma**
+## GitHup page where this project may be viewed:
 
-* [Link to the project in Figma](https://www.figma.com/file/SurN1jaeEQIhuZEDMhmWWf/Sprint-4-Around-The-U.S.-desktop-mobile?node-id=0%3A1)
-
-**Images**
-
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
-
-Have fun with JavaScript!
