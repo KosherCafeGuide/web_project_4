@@ -12,6 +12,10 @@
     padding: 0;
 }
 
+.edit-profile-form__save:hover {
+    cursor: pointer;
+}
+
 @media screen and (max-width: 730px) {
     .edit-profile-form__save {
         width: 234px;

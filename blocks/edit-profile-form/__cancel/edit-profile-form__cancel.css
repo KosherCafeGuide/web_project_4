@@ -11,6 +11,10 @@
     top: -40px;
 }
 
+.edit-profile-form__cancel:hover {
+    cursor: pointer;
+}
+
 @media screen and (max-width: 730px) {
     .edit-profile-form__cancel {
         top: -39.62px;

@@ -1,5 +1,16 @@
 .element__like-toggle {
+    all: unset;
     background-color: white;
+    background-image: url("../../../images/like-toggle.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 21px;
+    height: 19px;
     align-self: center;
     margin: 0 0 0 auto;
+}
+
+.element__like-toggle:hover {
+    cursor: pointer;
 }
