@@ -14,43 +14,34 @@
 <body class="site-content">
 
     <header class="header">
-        <img class="header__logo" alt="Around the US, Logo" src="./images/Logo.png">
+        <img class="header__logo" alt="Around the US, Logo" src="./images/Logo.svg">
     </header>
     <main>
         <section class="profile">
-            <img class="profile__avatar profile__avatar_shape_elipse" src="./images/avatar.jpg" alt="avatar of contributer">
+            <img class="profile__avatar" src="./images/avatar.jpg" alt="avatar of contributer">
             <div class="profile__info">
                 <div class="profile__top-line">
                     <h1 class="profile__name">Jacques Cousteau </h1>
-                    <button class="profile__edit-btn"></button>
+                    <button type="button" class="profile__edit-btn" aria-labelledby="Edit"></button>
                 </div>
                 <p class="profile__group">Explorer</p>
             </div>
-            <button type="button" class="profile__add-btn" name="Add" value="Add"></button>
+            <button type="button" class="profile__add-btn" aria-labelledby="Add" value="Add"></button>
         </section>
-        <section class="popup">
-            <form class="edit-profile-form">
-                <p class="edit-profile-form__label">Edit Profile</p>
-                <input type="text" class="edit-profile-form__name" placeholder=""></input>
-                <input type="text" class="edit-profile-form__group" placeholder=""></input>
-                <button type="submit" class="edit-profile-form__save" name="save" value="Save">Save</button>
-                <button type="reset" class="edit-profile-form__cancel" name="cancel" value="Cancel"></button>
-            </form>
 
-        </section>
         <section class="elements">
             <div class="element">
                 <img class="element__image" src="./images/Yosemite-Valley.jpg" alt="Yosemite Valley">
                 <div class="element__footer">
                     <h2 class="element__image-title">Yosemite Valley</h2>
-                    <button type="button" class="element__like-toggle" src="./images/like-toggle.png" alt="click to 'Like'"></button>
+                    <button type="button" class="element__like-toggle" aria-labelledby="Like"></button>
                 </div>
             </div>
             <div class="element">
                 <img class="element__image" src="./images/Lake-Louise.jpg" alt="Lake Louise">
                 <div class="element__footer">
                     <h2 class="element__image-title">Lake Louise</h2>
-                    <button type="button" class="element__like-toggle" src="./images/like-toggle.png" alt="click to 'Like'"></button>
+                    <button type="button" class="element__like-toggle" aria-labelledby="Like"></button>
 
                 </div>
             </div>
@@ -58,7 +49,7 @@
                 <img class="element__image" src="./images/Bald-Mountains.jpg" alt="Bald Mountains">
                 <div class="element__footer">
                     <h2 class="element__image-title">Bald Mountains</h2>
-                    <button type="button" class="element__like-toggle" src="./images/like-toggle.png" alt="click to 'Like'"></button>
+                    <button type="button" class="element__like-toggle" aria-labelledby="Like"></button>
 
                 </div>
             </div>
@@ -66,7 +57,7 @@
                 <img class="element__image" src="./images/Latemar.jpg" alt="Latemar">
                 <div class="element__footer">
                     <h2 class="element__image-title">Latemar</h2>
-                    <button type="button" class="element__like-toggle" src="./images/like-toggle.png" alt="click to 'Like'"></button>
+                    <button type="button" class="element__like-toggle" aria-labelledby="Like"></button>
 
                 </div>
             </div>
@@ -75,7 +66,7 @@
                 <div class="element__footer">
 
                     <h2 class="element__image-title">Vanoise National Park</h2>
-                    <button type="button" class="element__like-toggle" src="./images/like-toggle.png" alt="click to 'Like'"></button>
+                    <button type="button" class="element__like-toggle" aria-labelledby="Like"></button>
 
                 </div>
             </div>
@@ -83,14 +74,26 @@
                 <img class="element__image" src="./images/Lago-di-Braies.jpg" alt="Lago di Braies">
                 <div class="element__footer">
                     <h2 class="element__image-title">Lago di Braies</h2>
-                    <button type="button" class="element__like-toggle" src="./images/like-toggle.png" alt="click to 'Like'"></button>
+                    <button type="button" class="element__like-toggle" aria-labelledby="Like"></button>
 
                 </div>
             </div>
         </section>
     </main>
     <footer class="footer">
-        <p class="copyright">&copy; 2021 Around The U.S. by David Avraham</p>
+        <!--This is not an element (which contain image, title and like), 
+            it is a separate block that belongs at the foot of the page!-->
+        <p class="copyright">&copy; 2021 Around The U.S. by D. Avraham</p>
     </footer>
+    <div class="popup">
+        <form class="edit-profile-form">
+            <h2 class="edit-profile-form__label">Edit Profile</h2>
+            <input type="text" class="edit-profile-form__name" name="name" required>
+            <input type="text" class="edit-profile-form__group" name="group" required>
+            <button type="submit" class="edit-profile-form__save" aria-labelledby="save" value="Save">Save</button>
+            <button type="button" class="edit-profile-form__cancel" aria-labelledby="cancel" value="Cancel"></button>
+        </form>
+
+    </div>
     <script src="./scripts/script.js"></script>
 </body>

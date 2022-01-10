@@ -1,7 +1,6 @@
 .edit-profile-form {
     position: relative;
     max-width: 430px;
-    height: 330px;
     background: #FFFFFF;
     box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
     border-radius: 10px;
@@ -11,6 +10,5 @@
 @media screen and (max-width: 730px) {
     .edit-profile-form {
         max-width: 282px;
-        height: 322px;
     }
 }

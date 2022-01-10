@@ -5,8 +5,15 @@
     text-align: left;
 }
 
+@media screen and (max-width: 938px) {
+    .copyright {
+        margin-left: 19px;
+    }
+}
+
 @media screen and (max-width: 400px) {
     .copyright {
+        max-width: 282px;
         margin: 0 auto 0;
         font-size: 14px;
         line-height: 17px;

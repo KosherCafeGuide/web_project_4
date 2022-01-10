@@ -1,6 +1,5 @@
 .profile__info {
     max-width: 415px;
-    min-height: 77px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -11,6 +10,5 @@
     .profile__info {
         justify-content: center;
         margin: 26.25px auto 0;
-        min-height: 0;
     }
 }

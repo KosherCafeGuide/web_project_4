@@ -2,6 +2,7 @@
 const formElement = document.querySelector(".edit-profile-form"); // Use the querySelector() method
 const profile = document.querySelector(".profile");
 const editButton = profile.querySelector(".profile__edit-btn");
+const cancelButton = formElement.querySelector(".edit-profile-form__cancel");
 const popup = document.querySelector(".popup");
 const nameInput = formElement.querySelector(".edit-profile-form__name"); // Use querySelector()
 const groupInput = formElement.querySelector(".edit-profile-form__group"); // Use querySelector()
@@ -16,7 +17,7 @@ function handleProfileFormSubmit(evt) {
     // This line stops the browser from 
     // submitting the form in the default way.
     evt.preventDefault();
-
+    //alert("save form?");
 
     let newName = nameInput.value;
     let newGroup = groupInput.value;
@@ -27,18 +28,14 @@ function handleProfileFormSubmit(evt) {
 
 }
 
-function handleProfileFormCancel(evt) {
-
-    evt.preventDefault();
+function handleProfileFormCancel() {
+    //alert("close form?");
     popup.classList.remove("popup_opened");
 }
 
-function handleProfileFormOpen(evt) {
-
-    evt.preventDefault();
-
+function handleProfileFormOpen() {
+    //alert("open form?");
     let currentName = profileName.textContent;
-
     let currentGroup = profileGroup.textContent;
 
     nameInput.value = currentName;
@@ -49,5 +46,5 @@ function handleProfileFormOpen(evt) {
 }
 
 formElement.addEventListener('submit', handleProfileFormSubmit);
-formElement.addEventListener('reset', handleProfileFormCancel);
+cancelButton.addEventListener('click', handleProfileFormCancel);
 editButton.addEventListener("click", handleProfileFormOpen);

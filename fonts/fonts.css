@@ -1,8 +1,8 @@
 @font-face {
     font-family: "Inter";
     font-style: normal;
-    font-weight: 600;
-    src: url(Inter-SemiBold.woff) format("woff"), url(Inter-SemiBold.woff2) format("woff2"), url(Inter-SemiBold.ttf) format("truetype");
+    font-weight: 500;
+    src: url(Inter-Medium.woff) format("woff"), url(Inter-Medium.woff2) format("woff2");
 }
 
 @font-face {

@@ -5,10 +5,15 @@
     text-align: left;
     color: #FFFFFF;
     margin: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 373px;
 }
 
-@media screen and (max-width: 430px) {
+@media screen and (max-width: 445px) {
     .profile__name {
+        max-width: 196px;
         font-size: 22px;
         line-height: 27px;
     }

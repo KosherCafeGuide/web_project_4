@@ -1,7 +1,7 @@
 .element__like-toggle {
     all: unset;
-    background-color: white;
-    background-image: url("../../../images/like-toggle.png");
+    background-color: transparent;
+    background-image: url("../../../images/like-toggle.svg");
     background-position: center center;
     background-repeat: no-repeat;
     background-size: contain;
@@ -13,4 +13,9 @@
 
 .element__like-toggle:hover {
     cursor: pointer;
+    opacity: 0.5;
+}
+
+.element__like-toggle:active {
+    background-image: url("../../../images/like-toggle-active.svg");
 }

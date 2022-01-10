@@ -1,6 +1,7 @@
 .edit-profile-form__cancel {
-    background-color: black;
-    background-image: url("../../../images/Close-Icon.png");
+    background-color: transparent;
+    background-image: url("../../../images/Close-Icon.svg");
+    background-size: 40px 40px;
     background-repeat: no-repeat;
     background-position: center center;
     border: none;
@@ -13,12 +14,14 @@
 
 .edit-profile-form__cancel:hover {
     cursor: pointer;
+    opacity: 0.6;
 }
 
 @media screen and (max-width: 730px) {
     .edit-profile-form__cancel {
         top: -39.62px;
         /*-13.62-26=-39.62*/
+        background-size: 26px 26px;
         width: 26px;
         height: 26px;
         right: 0px;
