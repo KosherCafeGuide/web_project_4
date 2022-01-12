@@ -1,0 +1,13 @@
+.edit-profile-form__field_type_group {
+    margin: 29.74px 36px 0;
+    /*not the same as edit-profile-form__name*/
+    padding: 0 0 13.34px 0;
+    /*not the same as edit-profile-form__name*/
+}
+
+@media screen and (max-width: 730px) {
+    .edit-profile-form__field_type_group {
+        margin: 30px 22px 0 22px;
+        padding: 0 0 9px 0;
+    }
+}

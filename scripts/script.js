@@ -4,8 +4,8 @@ const profile = document.querySelector(".profile");
 const editButton = profile.querySelector(".profile__edit-btn");
 const cancelButton = formElement.querySelector(".edit-profile-form__cancel");
 const popup = document.querySelector(".popup");
-const nameInput = formElement.querySelector(".edit-profile-form__name"); // Use querySelector()
-const groupInput = formElement.querySelector(".edit-profile-form__group"); // Use querySelector()
+const nameInput = formElement.querySelector(".edit-profile-form__field_type_name"); // Use querySelector()
+const groupInput = formElement.querySelector(".edit-profile-form__field_type_group"); // Use querySelector()
 const profileName = profile.querySelector(".profile__name");
 const profileGroup = profile.querySelector(".profile__group");
 // Next is the form submit handler, though

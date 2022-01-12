@@ -21,11 +21,13 @@
 /**/
 
 @import url("../blocks/popup/popup.css");
+@import url("../blocks/required-by-reviewer/required-by-reviewer.css");
 @import url("../blocks/popup/_opened/popup_opened.css");
 @import url("../blocks/edit-profile-form/edit-profile-form.css");
 @import url("../blocks/edit-profile-form/__label/edit-profile-form__label.css");
-@import url("../blocks/edit-profile-form/__name/edit-profile-form__name.css");
-@import url("../blocks/edit-profile-form/__group/edit-profile-form__group.css");
+@import url("../blocks/edit-profile-form/__field/edit-profile-form__field.css");
+@import url("../blocks/edit-profile-form/__field/_type/edit-profile-form__field_type_name.css");
+@import url("../blocks/edit-profile-form/__field/_type/edit-profile-form__field_type_group.css");
 @import url("../blocks/edit-profile-form/__save/edit-profile-form__save.css");
 @import url("../blocks/edit-profile-form/__cancel/edit-profile-form__cancel.css");
 

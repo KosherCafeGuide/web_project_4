@@ -1,11 +1,7 @@
-.edit-profile-form__name {
+.edit-profile-form__field {
     font-weight: normal;
     font-size: 14px;
     line-height: 17px;
-    margin: 54px 36px 0;
-    /*not the same as edit-profile-form__group*/
-    padding: 0 0 13.26px 0;
-    /*not the same as edit-profile-form__group*/
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     border-top: none;
     border-left: none;
@@ -15,10 +11,6 @@
 
 @media screen and (max-width: 730px) {
     .edit-profile-form__name {
-        font-size: 14px;
-        line-height: 17px;
-        margin: 76px 22px 0;
-        padding: 0 0 9px 0;
         width: 238px;
     }
 }

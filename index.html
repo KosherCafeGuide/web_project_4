@@ -22,11 +22,11 @@
             <div class="profile__info">
                 <div class="profile__top-line">
                     <h1 class="profile__name">Jacques Cousteau </h1>
-                    <button type="button" class="profile__edit-btn" aria-labelledby="Edit"></button>
+                    <button type="button" class="profile__edit-btn" aria-label="Edit"></button>
                 </div>
                 <p class="profile__group">Explorer</p>
             </div>
-            <button type="button" class="profile__add-btn" aria-labelledby="Add" value="Add"></button>
+            <button type="button" class="profile__add-btn" aria-label="Add" value="Add"></button>
         </section>
 
         <section class="elements">
@@ -34,14 +34,14 @@
                 <img class="element__image" src="./images/Yosemite-Valley.jpg" alt="Yosemite Valley">
                 <div class="element__footer">
                     <h2 class="element__image-title">Yosemite Valley</h2>
-                    <button type="button" class="element__like-toggle" aria-labelledby="Like"></button>
+                    <button type="button" class="element__like-toggle" aria-label="Like"></button>
                 </div>
             </div>
             <div class="element">
                 <img class="element__image" src="./images/Lake-Louise.jpg" alt="Lake Louise">
                 <div class="element__footer">
                     <h2 class="element__image-title">Lake Louise</h2>
-                    <button type="button" class="element__like-toggle" aria-labelledby="Like"></button>
+                    <button type="button" class="element__like-toggle" aria-label="Like"></button>
 
                 </div>
             </div>
@@ -49,7 +49,7 @@
                 <img class="element__image" src="./images/Bald-Mountains.jpg" alt="Bald Mountains">
                 <div class="element__footer">
                     <h2 class="element__image-title">Bald Mountains</h2>
-                    <button type="button" class="element__like-toggle" aria-labelledby="Like"></button>
+                    <button type="button" class="element__like-toggle" aria-label="Like"></button>
 
                 </div>
             </div>
@@ -57,7 +57,7 @@
                 <img class="element__image" src="./images/Latemar.jpg" alt="Latemar">
                 <div class="element__footer">
                     <h2 class="element__image-title">Latemar</h2>
-                    <button type="button" class="element__like-toggle" aria-labelledby="Like"></button>
+                    <button type="button" class="element__like-toggle" aria-label="Like"></button>
 
                 </div>
             </div>
@@ -66,7 +66,7 @@
                 <div class="element__footer">
 
                     <h2 class="element__image-title">Vanoise National Park</h2>
-                    <button type="button" class="element__like-toggle" aria-labelledby="Like"></button>
+                    <button type="button" class="element__like-toggle" aria-label="Like"></button>
 
                 </div>
             </div>
@@ -74,7 +74,7 @@
                 <img class="element__image" src="./images/Lago-di-Braies.jpg" alt="Lago di Braies">
                 <div class="element__footer">
                     <h2 class="element__image-title">Lago di Braies</h2>
-                    <button type="button" class="element__like-toggle" aria-labelledby="Like"></button>
+                    <button type="button" class="element__like-toggle" aria-label="Like"></button>
 
                 </div>
             </div>
@@ -86,13 +86,15 @@
         <p class="copyright">&copy; 2021 Around The U.S. by D. Avraham</p>
     </footer>
     <div class="popup">
-        <form class="edit-profile-form">
-            <h2 class="edit-profile-form__label">Edit Profile</h2>
-            <input type="text" class="edit-profile-form__name" name="name" required>
-            <input type="text" class="edit-profile-form__group" name="group" required>
-            <button type="submit" class="edit-profile-form__save" aria-labelledby="save" value="Save">Save</button>
-            <button type="button" class="edit-profile-form__cancel" aria-labelledby="cancel" value="Cancel"></button>
-        </form>
+        <div class="required-by-reviewer">
+            <form class="edit-profile-form" name="profileForm">
+                <h2 class="edit-profile-form__label">Edit Profile</h2>
+                <input type="text" class="edit-profile-form__field edit-profile-form__field_type_name" name="name" required>
+                <input type="text" class="edit-profile-form__field edit-profile-form__field_type_group" name="group" required>
+                <button type="submit" class="edit-profile-form__save" aria-label="save" value="Save">Save</button>
+                <button type="button" class="edit-profile-form__cancel" aria-label="cancel" value="Cancel"></button>
+            </form>
+        </div>
 
     </div>
     <script src="./scripts/script.js"></script>
