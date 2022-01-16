@@ -33,6 +33,7 @@
 
 @import url("../blocks/elements/elements.css");
 @import url("../blocks/element/element.css");
+@import url("../blocks/element/__delete-btn/element__delete-btn.css");
 @import url("../blocks/element/__image/element__image.css");
 @import url("../blocks/element/__footer/element__footer.css");
 @import url("../blocks/element/__image-title/element__image-title.css");
