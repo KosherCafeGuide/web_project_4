@@ -1,0 +1,10 @@
+.add-place-form {
+    max-width: 430px;
+    z-index: 3;
+}
+
+@media screen and (max-width: 730px) {
+    .add-place-form {
+        max-width: 282px;
+    }
+}

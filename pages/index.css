@@ -28,6 +28,11 @@
 @import url("../blocks/edit-profile-form/__field/edit-profile-form__field.css");
 @import url("../blocks/edit-profile-form/__save/edit-profile-form__save.css");
 @import url("../blocks/edit-profile-form/__cancel/edit-profile-form__cancel.css");
+@import url("../blocks/add-place-form/add-place-form.css");
+@import url("../blocks/add-place-form/__label/add-place-form__label.css");
+@import url("../blocks/add-place-form/__field/add-place-form__field.css");
+@import url("../blocks/add-place-form/__save/add-place-form__save.css");
+@import url("../blocks/add-place-form/__cancel/add-place-form__cancel.css");
 
 /**/
 
