@@ -52,6 +52,11 @@ const profileGroup = profile.querySelector(".profile__group");
 //--
 //Functions
 //--
+
+function deleteElement(card) {
+    card.remove();
+}
+
 function createElement(card) {
     const elementTemplate = document.querySelector("#element").content.querySelector(".element");
     const element = elementTemplate.cloneNode(true);
@@ -63,6 +68,12 @@ function createElement(card) {
     title.textContent = card.name;
     image.src = card.link;
     image.alt = card.name;
+
+    deleteBtn.addEventListener("click", function(evt) {
+        const elementToDel = evt.path[1];
+        console.log(elementToDel)
+        deleteElement(elementToDel);
+    })
 
     return element;
 
