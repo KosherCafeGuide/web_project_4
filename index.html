@@ -30,55 +30,7 @@
         </section>
 
         <section class="elements">
-            <div class="element">
-                <button class="element__delete-btn" aria-label="Delete" value="Delete"></button>
-                <img class="element__image" src="./images/Yosemite-Valley.jpg" alt="Yosemite Valley">
-                <div class="element__footer">
-                    <h2 class="element__image-title">Yosemite Valley</h2>
-                    <button type="button" class="element__like-toggle" aria-label="Like"></button>
-                </div>
-            </div>
-            <div class="element">
-                <img class="element__image" src="./images/Lake-Louise.jpg" alt="Lake Louise">
-                <div class="element__footer">
-                    <h2 class="element__image-title">Lake Louise</h2>
-                    <button type="button" class="element__like-toggle" aria-label="Like"></button>
 
-                </div>
-            </div>
-            <div class="element">
-                <img class="element__image" src="./images/Bald-Mountains.jpg" alt="Bald Mountains">
-                <div class="element__footer">
-                    <h2 class="element__image-title">Bald Mountains</h2>
-                    <button type="button" class="element__like-toggle" aria-label="Like"></button>
-
-                </div>
-            </div>
-            <div class="element">
-                <img class="element__image" src="./images/Latemar.jpg" alt="Latemar">
-                <div class="element__footer">
-                    <h2 class="element__image-title">Latemar</h2>
-                    <button type="button" class="element__like-toggle" aria-label="Like"></button>
-
-                </div>
-            </div>
-            <div class="element">
-                <img class="element__image" src="./images/Vanoise-National-Park.jpg" alt="Vanoise National Park">
-                <div class="element__footer">
-
-                    <h2 class="element__image-title">Vanoise National Park</h2>
-                    <button type="button" class="element__like-toggle" aria-label="Like"></button>
-
-                </div>
-            </div>
-            <div class="element">
-                <img class="element__image" src="./images/Lago-di-Braies.jpg" alt="Lago di Braies">
-                <div class="element__footer">
-                    <h2 class="element__image-title">Lago di Braies</h2>
-                    <button type="button" class="element__like-toggle" aria-label="Like"></button>
-
-                </div>
-            </div>
         </section>
     </main>
     <footer class="footer">
@@ -105,5 +57,15 @@
         </div>
 
     </div>
+    <template id="element">
+        <div class="element">
+            <button class="element__delete-btn" aria-label="Delete" value="Delete"></button>
+            <img class="element__image">
+            <div class="element__footer">
+                <h2 class="element__image-title"></h2>
+                <button type="button" class="element__like-toggle" aria-label="Like"></button>
+            </div>
+        </div>
+    </template>
     <script src="./scripts/script.js"></script>
 </body>

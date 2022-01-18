@@ -9,3 +9,8 @@
     border: 0;
     padding: 0;
 }
+
+.element__delete-btn:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}
