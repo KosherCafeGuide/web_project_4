@@ -27,20 +27,26 @@ const initialCards = [{
 //Direct from the DOM
 //--
 const profile = document.querySelector(".profile");
-const popup = document.querySelector(".popup");
+const profileFormPopup = document.querySelector(".edit-profile-form").parentElement.parentElement;
+const placeFormPopup = document.querySelector(".add-place-form").parentElement.parentElement;
 const elements = document.querySelector(".elements");
 //--
 //Forms
 //--
-const formElement = document.querySelector(".edit-profile-form");
+const profileForm = document.querySelector(".edit-profile-form");
+const placeForm = document.querySelector(".add-place-form");
 
 //--
 //Form Elements (labels, fields and buttons)
 //--
 const editButton = profile.querySelector(".profile__edit-btn");
-const cancelButton = formElement.querySelector(".edit-profile-form__cancel");
-const nameInput = formElement.querySelector(".edit-profile-form__field_type_name");
-const groupInput = formElement.querySelector(".edit-profile-form__field_type_group");
+const addButton = profile.querySelector(".profile__add-btn");
+const cancelButtonProfile = profileForm.querySelector(".edit-profile-form__cancel");
+const nameInput = profileForm.querySelector(".edit-profile-form__field_type_name");
+const groupInput = profileForm.querySelector(".edit-profile-form__field_type_group");
+const titleInput = placeForm.querySelector(".add-place-form__field_type_title");
+const linkInput = placeForm.querySelector(".add-place-form__field_type_link");
+const cancelButtonPlace = placeForm.querySelector(".add-place-form__cancel");
 
 //--
 //Page Elements /DOM Nodes used in code
@@ -100,13 +106,25 @@ function handleProfileFormSubmit(evt) {
 
     profileName.textContent = newName;
     profileGroup.textContent = newGroup;
+    closePopup(evt.path[2]);
+}
+
+function closePopup(popup) {
+    //console.log(popup);
     popup.classList.remove("popup_opened");
 
 }
 
-function handleProfileFormCancel() {
-    //alert("close form?");
-    popup.classList.remove("popup_opened");
+function handleFormCancel(evt) {
+    if (titleInput.value !== "" || linkInput.value !== "") {
+        titleInput.value = "";
+        linkInput.value = "";
+    }
+    closePopup(evt.path[3]);
+}
+
+function openPopup(popup) {
+    popup.classList.add("popup_opened");
 }
 
 function handleProfileFormOpen() {
@@ -117,14 +135,38 @@ function handleProfileFormOpen() {
     nameInput.value = currentName;
     groupInput.value = currentGroup;
 
-    popup.classList.add("popup_opened");
+    openPopup(profileFormPopup);
 
+}
+
+function handlePlaceFormOpen() {
+    openPopup(placeFormPopup);
+}
+
+function handlePlaceFormSubmit(evt) {
+    // This line stops the browser from 
+    // submitting the form in the default way.
+    evt.preventDefault();
+    let newTitle = titleInput.value;
+    let newLink = linkInput.value;
+    const newCard = {
+        name: newTitle,
+        link: newLink
+    }
+    titleInput.value = "";
+    linkInput.value = "";
+    const newElement = createElement(newCard);
+    renderElement(newElement, elements);
+    closePopup(evt.path[2]);
 }
 
 //--
 //Event listeners
 //--
 
-formElement.addEventListener('submit', handleProfileFormSubmit);
-cancelButton.addEventListener('click', handleProfileFormCancel);
+profileForm.addEventListener('submit', handleProfileFormSubmit);
+placeForm.addEventListener('submit', handlePlaceFormSubmit);
+cancelButtonProfile.addEventListener('click', handleFormCancel);
+cancelButtonPlace.addEventListener('click', handleFormCancel);
 editButton.addEventListener("click", handleProfileFormOpen);
+addButton.addEventListener("click", handlePlaceFormOpen);
