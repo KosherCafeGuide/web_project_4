@@ -80,6 +80,9 @@ function createElement(card) {
         console.log(elementToDel)
         deleteElement(elementToDel);
     })
+    likeBtn.addEventListener("click", () => {
+        likeBtn.classList.toggle("element__like-toggle-active");
+    })
 
     return element;
 

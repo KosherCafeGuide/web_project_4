@@ -16,6 +16,6 @@
     opacity: 0.5;
 }
 
-.element__like-toggle:active {
+.element__like-toggle-active {
     background-image: url("../../../images/like-toggle-active.svg");
 }
