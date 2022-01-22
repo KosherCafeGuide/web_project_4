@@ -45,7 +45,7 @@
                 <input type="text" class="edit-profile-form__field edit-profile-form__field_type_name" name="name" required>
                 <input type="text" class="edit-profile-form__field edit-profile-form__field_type_group" name="group" required>
                 <button type="submit" class="edit-profile-form__save" aria-label="save" value="Save">Save</button>
-                <button type="button" class="edit-profile-form__cancel" aria-label="cancel" value="Cancel"></button>
+                <button type="button" class="cancel" aria-label="cancel" value="Cancel"></button>
             </form>
         </div>
 
@@ -57,10 +57,17 @@
                 <input type="text" class="add-place-form__field add-place-form__field_type_title" name="title" placeholder="Title" required>
                 <input type="text" class="add-place-form__field add-place-form__field_type_link" name="link" placeholder="Image link" required>
                 <button type="submit" class="add-place-form__save" aria-label="save" value="Save">Save</button>
-                <button type="button" class="add-place-form__cancel" aria-label="cancel" value="Cancel"></button>
+                <button type="button" class="cancel" aria-label="cancel" value="Cancel"></button>
             </form>
         </div>
 
+    </div>
+    <div class="popup">
+        <div class="popup__image-container">
+            <img class="popup-image">
+            <p class="popup-image__title"></p>
+            <button type="button" class="cancel" aria-label="cancel" value="Cancel"></button>
+        </div>
     </div>
     <template id="element">
         <div class="element">

@@ -29,6 +29,9 @@ const initialCards = [{
 const profile = document.querySelector(".profile");
 const profileFormPopup = document.querySelector(".edit-profile-form").parentElement.parentElement;
 const placeFormPopup = document.querySelector(".add-place-form").parentElement.parentElement;
+const popupImage = document.querySelector(".popup-image");
+const popupImageTitle = document.querySelector(".popup-image__title")
+const popupImagePopup = popupImage.parentElement.parentElement;
 const elements = document.querySelector(".elements");
 //--
 //Forms
@@ -41,12 +44,12 @@ const placeForm = document.querySelector(".add-place-form");
 //--
 const editButton = profile.querySelector(".profile__edit-btn");
 const addButton = profile.querySelector(".profile__add-btn");
-const cancelButtonProfile = profileForm.querySelector(".edit-profile-form__cancel");
+const cancelButtons = document.querySelectorAll(".cancel");
 const nameInput = profileForm.querySelector(".edit-profile-form__field_type_name");
 const groupInput = profileForm.querySelector(".edit-profile-form__field_type_group");
 const titleInput = placeForm.querySelector(".add-place-form__field_type_title");
 const linkInput = placeForm.querySelector(".add-place-form__field_type_link");
-const cancelButtonPlace = placeForm.querySelector(".add-place-form__cancel");
+
 
 //--
 //Page Elements /DOM Nodes used in code
@@ -83,9 +86,28 @@ function createElement(card) {
     likeBtn.addEventListener("click", () => {
         likeBtn.classList.toggle("element__like-toggle-active");
     })
-
+    image.addEventListener("click", expandImage);
     return element;
 
+}
+
+function expandImage(evt) {
+    console.log(evt);
+    const imageURL = evt.path[0].currentSrc;
+    const imageTitle = evt.path[0].alt;
+    console.log(imageTitle);
+    popupImage.setAttribute("src", imageURL);
+    popupImageTitle.textContent = imageTitle;
+    //NOTE TO SELF:
+    //set Title
+    //add Cancel Button
+    console.log(popupImageTitle);
+
+    openPopup(popupImagePopup);
+    console.log(popupImagePopup.classList);
+    popupImage.addEventListener("click", () => {
+        closePopup(popupImagePopup);
+    })
 }
 
 function renderElement(card, container) {
@@ -123,7 +145,9 @@ function handleFormCancel(evt) {
         titleInput.value = "";
         linkInput.value = "";
     }
-    closePopup(evt.path[3]);
+    const popupToClose = evt.target.closest("div.popup.popup_opened")
+
+    closePopup(popupToClose);
 }
 
 function openPopup(popup) {
@@ -169,7 +193,8 @@ function handlePlaceFormSubmit(evt) {
 
 profileForm.addEventListener('submit', handleProfileFormSubmit);
 placeForm.addEventListener('submit', handlePlaceFormSubmit);
-cancelButtonProfile.addEventListener('click', handleFormCancel);
-cancelButtonPlace.addEventListener('click', handleFormCancel);
+cancelButtons.forEach(function(cancelButton) {
+    cancelButton.addEventListener('click', handleFormCancel);
+})
 editButton.addEventListener("click", handleProfileFormOpen);
 addButton.addEventListener("click", handlePlaceFormOpen);
