@@ -30,7 +30,7 @@ const profile = document.querySelector(".profile");
 const profileFormPopup = document.querySelector(".edit-profile-form").parentElement.parentElement;
 const placeFormPopup = document.querySelector(".add-place-form").parentElement.parentElement;
 const popupImage = document.querySelector(".popup-image");
-const popupImageTitle = document.querySelector(".popup-image__title")
+const popupImageTitle = document.querySelector(".popup-image-title")
 const popupImagePopup = popupImage.parentElement.parentElement;
 const elements = document.querySelector(".elements");
 //--
