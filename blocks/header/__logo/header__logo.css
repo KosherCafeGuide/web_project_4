@@ -1,6 +1,13 @@
 .header__logo {
+    background-image: url(../../../images/Logo.svg);
+    background-repeat: no-repeat;
+    background-color: transparent;
     max-width: 173px;
     min-height: 33px;
+}
+
+.header__logo:hover {
+    background-image: url(../../../images/Logo-black.svg);
 }
 
 @media screen and (max-width:320px) {
