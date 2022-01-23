@@ -5,7 +5,7 @@
     top: 0px;
     z-index: 2;
     display: flex;
-    transition: opacity 2s, visibility 2s ease-in-out;
+    transition: opacity 1s, visibility 1s ease-in-out;
     opacity: 0;
     visibility: hidden;
     overflow: hidden;
