@@ -1,43 +1,19 @@
-const initialCards = [{
-        name: "Yosemite Valley",
-        link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
-    },
-    {
-        name: "Lake Louise",
-        link: "https://code.s3.yandex.net/web-code/lake-louise.jpg"
-    },
-    {
-        name: "Bald Mountains",
-        link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
-    },
-    {
-        name: "Latemar",
-        link: "https://code.s3.yandex.net/web-code/latemar.jpg"
-    },
-    {
-        name: "Vanoise National Park",
-        link: "https://code.s3.yandex.net/web-code/vanoise.jpg"
-    },
-    {
-        name: "Lago di Braies",
-        link: "https://code.s3.yandex.net/web-code/lago.jpg"
-    }
-];
-//--
-//Direct from the DOM
-//--
-const profile = document.querySelector(".profile");
-const profileFormPopup = document.querySelector(".edit-profile-form").parentElement.parentElement;
-const placeFormPopup = document.querySelector(".add-place-form").parentElement.parentElement;
-const popupImage = document.querySelector(".popup-image");
-const popupImageTitle = document.querySelector(".popup-image-title")
-const popupImagePopup = popupImage.parentElement.parentElement;
-const elements = document.querySelector(".elements");
 //--
 //Forms
 //--
 const profileForm = document.querySelector(".edit-profile-form");
 const placeForm = document.querySelector(".add-place-form");
+//--
+//Direct from the DOM
+//--
+const profile = document.querySelector(".profile");
+const profileFormPopup = profileForm.closest(".popup");
+const placeFormPopup = placeForm.closest(".popup");
+const popupImage = document.querySelector(".popup__image");
+const popupImageTitle = document.querySelector(".popup__image-title")
+const popupImagePopup = popupImage.closest(".popup");
+const elements = document.querySelector(".elements");
+const elementTemplate = document.querySelector("#element").content.querySelector(".element");
 
 //--
 //Form Elements (labels, fields and buttons)
@@ -67,7 +43,7 @@ function deleteElement(card) {
 }
 
 function createElement(card) {
-    const elementTemplate = document.querySelector("#element").content.querySelector(".element");
+
     const element = elementTemplate.cloneNode(true);
     const deleteBtn = element.querySelector(".element__delete-btn")
     const title = element.querySelector(".element__image-title");
@@ -79,9 +55,7 @@ function createElement(card) {
     image.alt = card.name;
 
     deleteBtn.addEventListener("click", function(evt) {
-        const elementToDel = evt.path[1];
-        console.log(elementToDel)
-        deleteElement(elementToDel);
+        deleteElement(element);
     })
     likeBtn.addEventListener("click", () => {
         likeBtn.classList.toggle("element__like-toggle-active");
@@ -92,26 +66,18 @@ function createElement(card) {
 }
 
 function expandImage(evt) {
-    console.log(evt);
-    const imageURL = evt.path[0].currentSrc;
-    const imageTitle = evt.path[0].alt;
-    console.log(imageTitle);
+
+    const imageURL = evt.srcElement.currentSrc;
+    const imageTitle = evt.srcElement.alt;
     popupImage.setAttribute("src", imageURL);
     popupImageTitle.textContent = imageTitle;
-    //NOTE TO SELF:
-    //set Title
-    //add Cancel Button
-    console.log(popupImageTitle);
 
     openPopup(popupImagePopup);
-    console.log(popupImagePopup.classList);
-    popupImage.addEventListener("click", () => {
-        closePopup(popupImagePopup);
-    })
+
 }
 
 function renderElement(card, container) {
-    container.append(card);
+    container.prepend(card);
 }
 
 initialCards.forEach(function(card) {
@@ -124,20 +90,22 @@ function handleProfileFormSubmit(evt) {
     // This line stops the browser from 
     // submitting the form in the default way.
     evt.preventDefault();
-    //alert("save form?");
 
-    let newName = nameInput.value;
-    let newGroup = groupInput.value;
+    const newName = nameInput.value;
+    const newGroup = groupInput.value;
 
     profileName.textContent = newName;
     profileGroup.textContent = newGroup;
-    closePopup(evt.path[2]);
+    closePopup(evt.target.closest("div.popup.popup_opened"));
 }
 
 function closePopup(popup) {
-    //console.log(popup);
     popup.classList.remove("popup_opened");
 
+}
+
+function openPopup(popup) {
+    popup.classList.add("popup_opened");
 }
 
 function handleFormCancel(evt) {
@@ -150,14 +118,12 @@ function handleFormCancel(evt) {
     closePopup(popupToClose);
 }
 
-function openPopup(popup) {
-    popup.classList.add("popup_opened");
-}
+
 
 function handleProfileFormOpen() {
     //alert("open form?");
-    let currentName = profileName.textContent;
-    let currentGroup = profileGroup.textContent;
+    const currentName = profileName.textContent;
+    const currentGroup = profileGroup.textContent;
 
     nameInput.value = currentName;
     groupInput.value = currentGroup;
@@ -174,8 +140,8 @@ function handlePlaceFormSubmit(evt) {
     // This line stops the browser from 
     // submitting the form in the default way.
     evt.preventDefault();
-    let newTitle = titleInput.value;
-    let newLink = linkInput.value;
+    const newTitle = titleInput.value;
+    const newLink = linkInput.value;
     const newCard = {
         name: newTitle,
         link: newLink
@@ -184,7 +150,7 @@ function handlePlaceFormSubmit(evt) {
     linkInput.value = "";
     const newElement = createElement(newCard);
     renderElement(newElement, elements);
-    closePopup(evt.path[2]);
+    closePopup(evt.target.closest("div.popup.popup_opened"));
 }
 
 //--
