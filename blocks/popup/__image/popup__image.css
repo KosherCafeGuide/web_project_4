@@ -1,6 +1,7 @@
 .popup__image {
     max-width: 75vw;
-    height: 75vh;
+    max-height: calc(75vh - 10px - 15px);
+    /*margin and line-height of image-title*/
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;

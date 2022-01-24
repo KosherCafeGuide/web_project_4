@@ -38,11 +38,11 @@ const profileGroup = profile.querySelector(".profile__group");
 //Functions
 //--
 
-function deleteElement(card) {
+function deleteCard(card) {
     card.remove();
 }
 
-function createElement(card) {
+function createCard(card) {
 
     const element = elementTemplate.cloneNode(true);
     const deleteBtn = element.querySelector(".element__delete-btn")
@@ -55,7 +55,7 @@ function createElement(card) {
     image.alt = card.name;
 
     deleteBtn.addEventListener("click", function(evt) {
-        deleteElement(element);
+        deleteCard(element);
     })
     likeBtn.addEventListener("click", () => {
         likeBtn.classList.toggle("element__like-toggle-active");
@@ -69,20 +69,21 @@ function expandImage(evt) {
 
     const imageURL = evt.srcElement.currentSrc;
     const imageTitle = evt.srcElement.alt;
-    popupImage.setAttribute("src", imageURL);
+    //popupImage.setAttribute("src", imageURL);
+    popupImage.src = imageURL;
+    popupImage.alt = imageTitle;
     popupImageTitle.textContent = imageTitle;
 
     openPopup(popupImagePopup);
 
 }
 
-function renderElement(card, container) {
+function renderCard(card, container) {
     container.prepend(card);
 }
 
 initialCards.forEach(function(card) {
-        const newElement = createElement(card);
-        renderElement(newElement, elements);
+        renderCard(createCard(card), elements);
     })
     // Note that the function name starts with a verb
     // and describes exactly what the function does
@@ -96,7 +97,7 @@ function handleProfileFormSubmit(evt) {
 
     profileName.textContent = newName;
     profileGroup.textContent = newGroup;
-    closePopup(evt.target.closest("div.popup.popup_opened"));
+    closePopup(evt.target.closest(".popup_opened"));
 }
 
 function closePopup(popup) {
@@ -146,11 +147,9 @@ function handlePlaceFormSubmit(evt) {
         name: newTitle,
         link: newLink
     }
-    titleInput.value = "";
-    linkInput.value = "";
-    const newElement = createElement(newCard);
-    renderElement(newElement, elements);
-    closePopup(evt.target.closest("div.popup.popup_opened"));
+    placeForm.reset();
+    renderCard(createCard(newCard), elements);
+    closePopup(evt.target.closest(".popup_opened"));
 }
 
 //--
