@@ -42,8 +42,8 @@
         <div class="popup__white-box">
             <form class="edit-profile-form" name="profileForm">
                 <h2 class="edit-profile-form__label">Edit Profile</h2>
-                <input type="text" class="edit-profile-form__field edit-profile-form__field_type_name" name="name" required>
-                <input type="text" class="edit-profile-form__field edit-profile-form__field_type_group" name="group" required>
+                <input type="text" minlength=2 maxlength=40 class="edit-profile-form__field edit-profile-form__field_type_name" name="name" required>
+                <input type="text" minlength=2 maxlength=200 class="edit-profile-form__field edit-profile-form__field_type_group" name="group" required>
                 <button type="submit" class="edit-profile-form__save" aria-label="save" value="Save">Save</button>
                 <button type="button" class="cancel" aria-label="cancel" value="Cancel"></button>
             </form>
@@ -54,8 +54,8 @@
         <div class="popup__white-box">
             <form class="add-place-form" name="addPlaceForm">
                 <h2 class="add-place-form__label">New Place</h2>
-                <input type="text" class="add-place-form__field add-place-form__field_type_title" name="title" placeholder="Title" required>
-                <input type="text" class="add-place-form__field add-place-form__field_type_link" name="link" placeholder="Image link" required>
+                <input type="text" minlength=1 maxlength=30 class="add-place-form__field add-place-form__field_type_title" name="title" placeholder="Title" required>
+                <input type="url" class="add-place-form__field add-place-form__field_type_link" name="link" placeholder="Image link" required>
                 <button type="submit" class="add-place-form__save" aria-label="save" value="Save">Save</button>
                 <button type="button" class="cancel" aria-label="cancel" value="Cancel"></button>
             </form>

@@ -67,8 +67,8 @@ function createCard(card) {
 
 function expandImage(evt) {
 
-    const imageURL = evt.srcElement.currentSrc;
-    const imageTitle = evt.srcElement.alt;
+    const imageURL = evt.target.currentSrc;
+    const imageTitle = evt.target.alt;
     //popupImage.setAttribute("src", imageURL);
     popupImage.src = imageURL;
     popupImage.alt = imageTitle;
