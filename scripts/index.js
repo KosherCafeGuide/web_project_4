@@ -114,7 +114,7 @@ function handleFormCancel(evt) {
         titleInput.value = "";
         linkInput.value = "";
     }
-    const popupToClose = evt.target.closest("div.popup.popup_opened")
+    const popupToClose = evt.target.closest(".popup_opened")
 
     closePopup(popupToClose);
 }
