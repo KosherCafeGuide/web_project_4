@@ -1,3 +1,4 @@
+const ESCAPE_KEY = 27;
 //--
 //Forms
 //--
@@ -69,7 +70,6 @@ function expandImage(evt) {
 
     const imageURL = evt.target.currentSrc;
     const imageTitle = evt.target.alt;
-    //popupImage.setAttribute("src", imageURL);
     popupImage.src = imageURL;
     popupImage.alt = imageTitle;
     popupImageTitle.textContent = imageTitle;
@@ -100,13 +100,27 @@ function handleProfileFormSubmit(evt) {
     closePopup(evt.target.closest(".popup_opened"));
 }
 
+function isEscEvent(evt, action) {
+    const activePopup = document.querySelector(".popup_opened");
+
+    if (evt.key === "Escape") {
+        action(activePopup);
+    }
+}
+
+function handleEscUp(evt) {
+    evt.preventDefault();
+    isEscEvent(evt, closePopup);
+}
+
 function closePopup(popup) {
     popup.classList.remove("popup_opened");
-
+    document.removeEventListener("keyup", handleEscUp);
 }
 
 function openPopup(popup) {
     popup.classList.add("popup_opened");
+    document.addEventListener("keyup", handleEscUp);
 }
 
 function handleFormCancel(evt) {
@@ -114,15 +128,12 @@ function handleFormCancel(evt) {
         titleInput.value = "";
         linkInput.value = "";
     }
-    const popupToClose = evt.target.closest(".popup_opened")
-
-    closePopup(popupToClose);
+    closePopup(evt.target.closest(".popup_opened"));
 }
 
 
 
 function handleProfileFormOpen() {
-    //alert("open form?");
     const currentName = profileName.textContent;
     const currentGroup = profileGroup.textContent;
 
