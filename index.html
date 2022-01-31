@@ -43,9 +43,9 @@
             <form class="edit-profile-form popup__form" name="profileForm" novalidate>
                 <h2 class="edit-profile-form__label">Edit Profile</h2>
                 <input type="text" id="name-input" minlength=2 maxlength=40 class="edit-profile-form__field edit-profile-form__field_type_name popup__input" name="name" required>
-                <span class="popup__input_type_error" id="name-input-error" title=""></span>
+                <span class="popup__error_visible" id="name-input-error"></span>
                 <input type="text" id="group-input" minlength=2 maxlength=200 class="edit-profile-form__field edit-profile-form__field_type_group popup__input" name="group" required>
-                <span class="popup__input_type_error" id="group-input-error"></span>
+                <span class="popup__error_visible" id="group-input-error"></span>
                 <button type="submit" class="edit-profile-form__save popup__button" aria-label="save" value="Save">Save</button>
                 <button type="button" class="cancel" aria-label="cancel" value="Cancel"></button>
             </form>
@@ -57,9 +57,9 @@
             <form class="add-place-form popup__form" name="addPlaceForm" novalidate>
                 <h2 class="add-place-form__label">New Place</h2>
                 <input type="text" id="title-input" minlength=1 maxlength=30 class="add-place-form__field add-place-form__field_type_title popup__input" name="title" placeholder="Title" required>
-                <span class="popup__input_type_error" id="title-input-error"></span>
+                <span class="popup__error_visible" id="title-input-error"></span>
                 <input type="url" id="url-input" class="add-place-form__field add-place-form__field_type_link popup__input" name="link" placeholder="Image link" required>
-                <span class="popup__input_type_error" id="url-input-error"></span>
+                <span class="popup__error_visible" id="url-input-error"></span>
                 <button type="submit" class="add-place-form__save popup__button" aria-label="save" value="Save">Save</button>
                 <button type="button" class="cancel" aria-label="cancel" value="Cancel"></button>
             </form>
