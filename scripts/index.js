@@ -100,10 +100,8 @@ function handleProfileFormSubmit(evt) {
 }
 
 function isEscEvent(evt, action) {
-    const activePopup = document.querySelector(".popup_opened");
-
     if (evt.key === "Escape") {
-        action(activePopup);
+        action(document.querySelector(".popup_opened"));
     }
 }
 
@@ -129,10 +127,6 @@ function openPopup(popup) {
 }
 
 function handleFormCancel(evt) {
-    if (titleInput.value !== "" || linkInput.value !== "") {
-        titleInput.value = "";
-        linkInput.value = "";
-    }
     closePopup(evt.target.closest(".popup_opened"));
 }
 
@@ -153,6 +147,12 @@ function handlePlaceFormOpen() {
     openPopup(placeFormPopup);
 }
 
+function disableSubmitButton(submitButton) {
+    console.log(submitButton);
+    submitButton.disabled = true;
+    submitButton.classList.add("popup__button_disabled");
+}
+
 function handlePlaceFormSubmit(evt) {
     // This line stops the browser from 
     // submitting the form in the default way.
@@ -166,6 +166,8 @@ function handlePlaceFormSubmit(evt) {
     placeForm.reset();
     renderCard(createCard(newCard), elements);
     closePopup(evt.target.closest(".popup_opened"));
+    console.log(evt.submitter);
+    disableSubmitButton(evt.submitter);
 }
 
 //--
