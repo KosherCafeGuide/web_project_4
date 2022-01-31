@@ -26,14 +26,12 @@ const hasInvalidInput = (inputList) => {
 };
 
 const toggleButtonState = (inputList, buttonElement, { inactiveButtonClass }) => {
-    console.log(hasInvalidInput(inputList));
+
     if (hasInvalidInput(inputList)) {
-        console.log("submit button Inactive");
         buttonElement.classList.add(inactiveButtonClass);
         buttonElement.disabled = true;
     } else {
         buttonElement.classList.remove(inactiveButtonClass);
-        console.log("submit button Active");
         buttonElement.disabled = false;
     }
 }
@@ -46,7 +44,6 @@ const setEventListners = (formEl, settings) => {
             toggleButtonState(inputList, button, settings);
         })
     });
-    console.log("line before toggleButtonState");
     toggleButtonState(inputList, button, settings);
 }
 
