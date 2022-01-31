@@ -1,4 +1,3 @@
-const ESCAPE_KEY = 27;
 //--
 //Forms
 //--
@@ -113,14 +112,20 @@ function handleEscUp(evt) {
     isEscEvent(evt, closePopup);
 }
 
+function handleOverlayClick(evt) {
+    closePopup(evt.target);
+}
+
 function closePopup(popup) {
     popup.classList.remove("popup_opened");
     document.removeEventListener("keyup", handleEscUp);
+    popup.removeEventListener("click", handleOverlayClick);
 }
 
 function openPopup(popup) {
     popup.classList.add("popup_opened");
     document.addEventListener("keyup", handleEscUp);
+    popup.addEventListener("click", handleOverlayClick);
 }
 
 function handleFormCancel(evt) {
