@@ -100,13 +100,18 @@ function handleProfileFormSubmit(evt) {
 }
 
 function isEscEvent(evt, action) {
+    console.log(evt.key);
     if (evt.key === "Escape") {
+        console.log("isEscEvent");
+        evt.preventDefault();
         action(document.querySelector(".popup_opened"));
     }
 }
 
-function handleEscUp(evt) {
-    evt.preventDefault();
+function handleEscDown(evt) {
+    console.log("handleEscPress");
+    console.log(evt);
+
     isEscEvent(evt, closePopup);
 }
 
@@ -116,13 +121,15 @@ function handleOverlayClick(evt) {
 
 function closePopup(popup) {
     popup.classList.remove("popup_opened");
-    document.removeEventListener("keyup", handleEscUp);
+    document.removeEventListener("keydown", handleEscDown);
+    popup.removeEventListener("keydown", handleEscDown);
     popup.removeEventListener("click", handleOverlayClick);
 }
 
 function openPopup(popup) {
     popup.classList.add("popup_opened");
-    document.addEventListener("keyup", handleEscUp);
+    document.addEventListener("keydown", handleEscDown);
+    popup.addEventListener("keydown", handleEscDown);
     popup.addEventListener("click", handleOverlayClick);
 }
 
