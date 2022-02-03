@@ -21,6 +21,7 @@ const elementTemplate = document.querySelector("#element").content.querySelector
 const editButton = profile.querySelector(".profile__edit-btn");
 const addButton = profile.querySelector(".profile__add-btn");
 const cancelButtons = document.querySelectorAll(".cancel");
+const overlays = document.querySelectorAll(".popup");
 const nameInput = profileForm.querySelector(".edit-profile-form__field_type_name");
 const groupInput = profileForm.querySelector(".edit-profile-form__field_type_group");
 const titleInput = placeForm.querySelector(".add-place-form__field_type_title");
@@ -99,38 +100,40 @@ function handleProfileFormSubmit(evt) {
     closePopup(evt.target.closest(".popup_opened"));
 }
 
-function isEscEvent(evt, action) {
-    console.log(evt.key);
-    if (evt.key === "Escape") {
+
+
+function handleEscDown(evt) {
+    console.log("Window Level Esc");
+    if (evt.code === "Escape") {
         console.log("isEscEvent");
-        evt.preventDefault();
-        action(document.querySelector(".popup_opened"));
+        //evt.preventDefault();
+        closePopup(document.querySelector(".popup_opened"));
     }
 }
 
-function handleEscDown(evt) {
-    console.log("handleEscPress");
-    console.log(evt);
-
-    isEscEvent(evt, closePopup);
+function handleEscDown2(evt) {
+    console.log("Popup Level Esc");
+    if (evt.code === "Escape") {
+        console.log("isEscEvent");
+        //evt.preventDefault();
+        closePopup(document.querySelector(".popup_opened"));
+    }
 }
 
 function handleOverlayClick(evt) {
-    closePopup(evt.target);
+    if (evt.target === evt.currentTarget) {
+        closePopup(evt.target);
+    }
 }
 
 function closePopup(popup) {
     popup.classList.remove("popup_opened");
     document.removeEventListener("keydown", handleEscDown);
-    popup.removeEventListener("keydown", handleEscDown);
-    popup.removeEventListener("click", handleOverlayClick);
 }
 
 function openPopup(popup) {
     popup.classList.add("popup_opened");
     document.addEventListener("keydown", handleEscDown);
-    popup.addEventListener("keydown", handleEscDown);
-    popup.addEventListener("click", handleOverlayClick);
 }
 
 function handleFormCancel(evt) {
@@ -185,6 +188,9 @@ profileForm.addEventListener('submit', handleProfileFormSubmit);
 placeForm.addEventListener('submit', handlePlaceFormSubmit);
 cancelButtons.forEach(function(cancelButton) {
     cancelButton.addEventListener('click', handleFormCancel);
+})
+overlays.forEach(function(overlay) {
+    overlay.addEventListener('click', handleOverlayClick);
 })
 editButton.addEventListener("click", handleProfileFormOpen);
 addButton.addEventListener("click", handlePlaceFormOpen);
