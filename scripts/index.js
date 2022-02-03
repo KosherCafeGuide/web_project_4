@@ -103,18 +103,7 @@ function handleProfileFormSubmit(evt) {
 
 
 function handleEscDown(evt) {
-    console.log("Window Level Esc");
     if (evt.code === "Escape") {
-        console.log("isEscEvent");
-        //evt.preventDefault();
-        closePopup(document.querySelector(".popup_opened"));
-    }
-}
-
-function handleEscDown2(evt) {
-    console.log("Popup Level Esc");
-    if (evt.code === "Escape") {
-        console.log("isEscEvent");
         //evt.preventDefault();
         closePopup(document.querySelector(".popup_opened"));
     }
@@ -158,7 +147,6 @@ function handlePlaceFormOpen() {
 }
 
 function disableSubmitButton(submitButton) {
-    console.log(submitButton);
     submitButton.disabled = true;
     submitButton.classList.add("popup__button_disabled");
 }
@@ -176,7 +164,6 @@ function handlePlaceFormSubmit(evt) {
     placeForm.reset();
     renderCard(createCard(newCard), elements);
     closePopup(evt.target.closest(".popup_opened"));
-    console.log(evt.submitter);
     disableSubmitButton(evt.submitter);
 }
 
