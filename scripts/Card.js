@@ -1,4 +1,5 @@
 //Card class with Export
+//import openPopup from "./utils.js";
 class Card {
     constructor(data, templateSelector) {
         this._title = data.name;
@@ -10,19 +11,17 @@ class Card {
         this.cardElement = document
             .querySelector(this._templateSelector)
             .content
-            .querySelector(".card")
+            .querySelector(".element")
             .cloneNode(true);
     }
     _addDataToCard() {
-        this.title = cardElement.querySelector(".element__image-title");
-        this.image = cardElement.querySelector(".element__image");
+        this.title = this.cardElement.querySelector(".element__image-title");
+        this.image = this.cardElement.querySelector(".element__image");
         this.title.textContent = this._title;
         this.image.src = this._imageUrl;
         this.image.alt = this._title;
     }
-    _deleteCard() {
-        this.remove();
-    }
+
     _expandImage() {
         const popupImage = document.querySelector(".popup__image");
         const popupImageTitle = document.querySelector(".popup__image-title");
@@ -34,21 +33,21 @@ class Card {
         openPopup(popupImagePopup);
     }
     _addEventListeners() {
-        this.deleteBtn = cardElement.querySelector(".element__delete-btn")
-        this.likeBtn = cardElement.querySelector(".element__like-toggle");
+        this.deleteBtn = this.cardElement.querySelector(".element__delete-btn")
+        this.likeBtn = this.cardElement.querySelector(".element__like-toggle");
         this.deleteBtn.addEventListener("click", function(evt) {
-            _deleteCard(element);
+            this.cardElement.remove();
         })
         this.likeBtn.addEventListener("click", () => {
             this.likeBtn.classList.toggle("element__like-toggle-active");
         })
-        this.image.addEventListener("click", _expandImage);
+        this.image.addEventListener("click", this._expandImage);
     }
 
     generateCard() {
-        _getTemplate();
-        _addDataToCard();
-        _addEventListeners();
+        this._getTemplate();
+        this._addDataToCard();
+        this._addEventListeners();
 
         return this.cardElement;
     }

@@ -1,4 +1,6 @@
 //event handlers and openPopup/closePopup functions
+import Card from "./Card.js";
+import renderCard from "./index.js";
 /*PROFILE*/
 const profile = document.querySelector(".profile");
 const profileName = profile.querySelector(".profile__name");
@@ -20,8 +22,6 @@ const elements = document.querySelector(".elements");
 /*GENERAL*/
 const cancelButtons = document.querySelectorAll(".cancel");
 const overlays = document.querySelectorAll(".popup");
-
-
 
 
 
@@ -117,3 +117,4 @@ overlays.forEach(function(overlay) {
 })
 editButton.addEventListener("click", handleProfileFormOpen);
 addButton.addEventListener("click", handlePlaceFormOpen);
+export default openPopup;

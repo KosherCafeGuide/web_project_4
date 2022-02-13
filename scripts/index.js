@@ -32,9 +32,13 @@ placeFormValidator.enableValidation();
 
 
 function renderCard(card, container) {
-    container.prepend(card, container);
+    container.prepend(card);
 }
 
 initialCards.forEach(function(card) {
-    renderCard(new Card(card, "#element").generateCard, elements);
+    const newCard = new Card(card, "#element").generateCard();
+    console.log(newCard);
+    renderCard(newCard, elements);
 })
+
+export default renderCard;
