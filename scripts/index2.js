@@ -6,7 +6,6 @@
 //--
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
-import initialCards from "./cards.js";
 //--
 //Form Validator settings
 //--
@@ -24,8 +23,6 @@ const profileForm = document.querySelector(".edit-profile-form");
 const placeForm = document.querySelector(".add-place-form");
 const profileFormValidator = new FormValidator(settings, profileForm);
 const placeFormValidator = new FormValidator(settings, placeForm);
-
-const elements = document.querySelector(".elements");
 
 profileFormValidator.enableValidation();
 placeFormValidator.enableValidation();
