@@ -1,10 +1,11 @@
 //Card class with Export
 //import openPopup from "./utils.js";
 class Card {
-    constructor(data, templateSelector) {
+    constructor(data, templateSelector, openPopup) {
         this._title = data.name;
         this._imageUrl = data.link;
         this._templateSelector = templateSelector; // "#card-template"
+        this._openPopup = openPopup;
 
     };
     _getTemplate() {
@@ -29,19 +30,22 @@ class Card {
         popupImage.src = this._imageUrl;
         popupImage.alt = this._title;
         popupImageTitle.textContent = this._title;
-
-        openPopup(popupImagePopup);
+        console.log(this);
+        console.log(this._openPopup);
+        this._openPopup(popupImagePopup);
     }
     _addEventListeners() {
         this.deleteBtn = this.cardElement.querySelector(".element__delete-btn")
         this.likeBtn = this.cardElement.querySelector(".element__like-toggle");
-        this.deleteBtn.addEventListener("click", function(evt) {
+        this.deleteBtn.addEventListener("click", () => {
             this.cardElement.remove();
-        })
+        });
         this.likeBtn.addEventListener("click", () => {
             this.likeBtn.classList.toggle("element__like-toggle-active");
         })
-        this.image.addEventListener("click", this._expandImage);
+        this.image.addEventListener("click", () => {
+            this._expandImage()
+        });
     }
 
     generateCard() {

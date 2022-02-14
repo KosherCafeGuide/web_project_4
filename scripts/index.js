@@ -7,6 +7,7 @@
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
 import initialCards from "./cards.js";
+import * as utils from "./utils.js";
 //--
 //Form Validator settings
 //--
@@ -15,7 +16,7 @@ const settings = {
     submitButtonSelector: ".popup__button",
     inactiveButtonClass: "popup__button_disabled",
     inputErrorClass: "popup__input_type_error",
-    errorClass: "popup__error_visible"
+    errorClass: "popup__error_visible",
 };
 //--
 //Forms
@@ -36,9 +37,8 @@ function renderCard(card, container) {
 }
 
 initialCards.forEach(function(card) {
-    const newCard = new Card(card, "#element").generateCard();
+    const newCard = new Card(card, "#element", utils.openPopup).generateCard();
     console.log(newCard);
     renderCard(newCard, elements);
 })
-
-export default renderCard;
+utils.setEventListeners();

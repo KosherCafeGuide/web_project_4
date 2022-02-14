@@ -1,6 +1,4 @@
 //event handlers and openPopup/closePopup functions
-import Card from "./Card.js";
-import renderCard from "./index.js";
 /*PROFILE*/
 const profile = document.querySelector(".profile");
 const profileName = profile.querySelector(".profile__name");
@@ -54,12 +52,12 @@ function handleOverlayClick(evt) {
 
 function closePopup(popup) {
     popup.classList.remove("popup_opened");
-    document.removeEventListener("keydown", handleEscDown);
 }
 
 function openPopup(popup) {
+    console.log(popup);
     popup.classList.add("popup_opened");
-    document.addEventListener("keydown", handleEscDown);
+
 }
 
 function handleFormCancel(evt) {
@@ -98,7 +96,7 @@ function handlePlaceFormSubmit(evt) {
         link: linkInput.value
     }
     placeForm.reset();
-    renderCard(new Card(newCard, "#element").generateCard(), elements);
+    renderCard(new Card(newCard, "#element", openPopup).generateCard(), elements);
     closePopup(evt.target.closest(".popup_opened"));
     disableSubmitButton(evt.submitter);
 }
@@ -106,15 +104,18 @@ function handlePlaceFormSubmit(evt) {
 //--
 //Event listeners
 //--
+function setEventListeners() {
+    profileForm.addEventListener('submit', handleProfileFormSubmit);
+    placeForm.addEventListener('submit', handlePlaceFormSubmit);
+    cancelButtons.forEach(function(cancelButton) {
+        cancelButton.addEventListener('click', handleFormCancel);
+    })
+    overlays.forEach(function(overlay) {
+        overlay.addEventListener('click', handleOverlayClick);
+    })
+    editButton.addEventListener("click", handleProfileFormOpen);
+    addButton.addEventListener("click", handlePlaceFormOpen);
+    document.addEventListener("keydown", handleEscDown);
+}
 
-profileForm.addEventListener('submit', handleProfileFormSubmit);
-placeForm.addEventListener('submit', handlePlaceFormSubmit);
-cancelButtons.forEach(function(cancelButton) {
-    cancelButton.addEventListener('click', handleFormCancel);
-})
-overlays.forEach(function(overlay) {
-    overlay.addEventListener('click', handleOverlayClick);
-})
-editButton.addEventListener("click", handleProfileFormOpen);
-addButton.addEventListener("click", handlePlaceFormOpen);
-export default openPopup;
+export { openPopup, closePopup, setEventListeners };;
