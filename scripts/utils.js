@@ -23,30 +23,30 @@ const overlays = document.querySelectorAll(".popup");
 
 
 
-function handleProfileFormSubmit(evt) {
+function handleProfileFormSubmit(event) {
     // This line stops the browser from 
     // submitting the form in the default way.
-    evt.preventDefault();
+    event.preventDefault();
 
     const newName = nameInput.value;
     const newGroup = groupInput.value;
 
     profileName.textContent = newName;
     profileGroup.textContent = newGroup;
-    closePopup(evt.target.closest(".popup_opened"));
+    closePopup(event.target.closest(".popup_opened"));
 }
 
 
 
-function handleEscDown(evt) {
-    if (evt.code === "Escape") {
+function handleEscDown(event) {
+    if (event.code === "Escape") {
         closePopup(document.querySelector(".popup_opened"));
     }
 }
 
-function handleOverlayClick(evt) {
-    if (evt.target === evt.currentTarget) {
-        closePopup(evt.target);
+function handleOverlayClick(event) {
+    if (event.target === event.currentTarget) {
+        closePopup(event.target);
     }
 }
 
@@ -55,13 +55,12 @@ function closePopup(popup) {
 }
 
 function openPopup(popup) {
-    console.log(popup);
     popup.classList.add("popup_opened");
 
 }
 
-function handleFormCancel(evt) {
-    closePopup(evt.target.closest(".popup_opened"));
+function handleFormCancel(event) {
+    closePopup(event.target.closest(".popup_opened"));
 }
 
 
@@ -86,27 +85,29 @@ function disableSubmitButton(submitButton) {
     submitButton.classList.add("popup__button_disabled");
 }
 
-function handlePlaceFormSubmit(evt) {
+function handlePlaceFormSubmit(event, makeViewableCard) {
     // This line stops the browser from 
     // submitting the form in the default way.
-    evt.preventDefault();
+    event.preventDefault();
 
     const newCard = {
         name: titleInput.value,
         link: linkInput.value
     }
     placeForm.reset();
-    renderCard(new Card(newCard, "#element", openPopup).generateCard(), elements);
-    closePopup(evt.target.closest(".popup_opened"));
-    disableSubmitButton(evt.submitter);
+    makeViewableCard(newCard);
+    closePopup(event.target.closest(".popup_opened"));
+    disableSubmitButton(event.submitter);
 }
 
 //--
 //Event listeners
 //--
-function setEventListeners() {
+function setEventListeners(makeViewableCard) {
     profileForm.addEventListener('submit', handleProfileFormSubmit);
-    placeForm.addEventListener('submit', handlePlaceFormSubmit);
+    placeForm.addEventListener('submit', () => {
+        handlePlaceFormSubmit(event, makeViewableCard);
+    });
     cancelButtons.forEach(function(cancelButton) {
         cancelButton.addEventListener('click', handleFormCancel);
     })

@@ -30,8 +30,6 @@ class Card {
         popupImage.src = this._imageUrl;
         popupImage.alt = this._title;
         popupImageTitle.textContent = this._title;
-        console.log(this);
-        console.log(this._openPopup);
         this._openPopup(popupImagePopup);
     }
     _addEventListeners() {

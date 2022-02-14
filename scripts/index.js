@@ -36,9 +36,12 @@ function renderCard(card, container) {
     container.prepend(card);
 }
 
-initialCards.forEach(function(card) {
+function makeViewableCard(card) {
     const newCard = new Card(card, "#element", utils.openPopup).generateCard();
-    console.log(newCard);
     renderCard(newCard, elements);
+}
+
+initialCards.forEach(function(card) {
+    makeViewableCard(card);
 })
-utils.setEventListeners();
+utils.setEventListeners(makeViewableCard);
