@@ -98,7 +98,7 @@ function handlePlaceFormSubmit(makeViewableCard, event) {
 //--
 //Event listeners
 //--
-function setEventListeners(makeViewableCard, resetFormValidations) {
+function setEventListeners(makeViewableCard, resetProfileValidations, resetPlaceValidation) {
     profileForm.addEventListener('submit', handleProfileFormSubmit);
 
     placeForm.addEventListener('submit', (event) => {
@@ -111,10 +111,10 @@ function setEventListeners(makeViewableCard, resetFormValidations) {
         overlay.addEventListener('click', handleOverlayClick);
     })
     editButton.addEventListener("click", () => {
-        handleProfileFormOpen(resetFormValidations);
+        handleProfileFormOpen(resetProfileValidations);
     });
     addButton.addEventListener("click", () => {
-        handlePlaceFormOpen(resetFormValidations);
+        handlePlaceFormOpen(resetPlaceValidation);
     });
 
 }

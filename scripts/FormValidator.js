@@ -57,9 +57,9 @@ class FormValidator {
     }
     resetValidation() {
         this.inputList.forEach((input) => {
-            this._checkInputValidity(input); //clearing errors
-            this._toggleButtonState(); // controlling the submit button 
+            this._hideInputError(input) //clearing errors even if user accidently leaves the form with errors on it!            
         });
+        this._toggleButtonState(); // controlling the submit button 
     }
 }
 export default FormValidator;
