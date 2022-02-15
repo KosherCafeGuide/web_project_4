@@ -37,7 +37,7 @@ function resetFormValidations() {
 }
 
 function renderCard(card, container) {
-    container.prepend(card);
+    container.prepend(card); //if in the future we wanted to insert / append(card), the logic would go in this function
 }
 
 function makeViewableCard(card) {
