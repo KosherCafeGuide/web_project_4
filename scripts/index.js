@@ -31,6 +31,10 @@ const elements = document.querySelector(".elements");
 profileFormValidator.enableValidation();
 placeFormValidator.enableValidation();
 
+function resetFormValidations() {
+    profileFormValidator.resetValidation();
+    placeFormValidator.resetValidation();
+}
 
 function renderCard(card, container) {
     container.prepend(card);
@@ -44,4 +48,4 @@ function makeViewableCard(card) {
 initialCards.forEach(function(card) {
     makeViewableCard(card);
 })
-utils.setEventListeners(makeViewableCard);
+utils.setEventListeners(makeViewableCard, resetFormValidations);

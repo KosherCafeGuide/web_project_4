@@ -1,6 +1,10 @@
 //Card class with Export
 //import openPopup from "./utils.js";
+const popupImage = document.querySelector(".popup__image");
+const popupImageTitle = document.querySelector(".popup__image-title");
+const popupImagePopup = popupImage.closest(".popup");
 class Card {
+
     constructor(data, templateSelector, openPopup) {
         this._title = data.name;
         this._imageUrl = data.link;
@@ -24,9 +28,6 @@ class Card {
     }
 
     _expandImage() {
-        const popupImage = document.querySelector(".popup__image");
-        const popupImageTitle = document.querySelector(".popup__image-title");
-        const popupImagePopup = popupImage.closest(".popup");
         popupImage.src = this._imageUrl;
         popupImage.alt = this._title;
         popupImageTitle.textContent = this._title;

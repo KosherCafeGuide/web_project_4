@@ -52,10 +52,12 @@ function handleOverlayClick(event) {
 
 function closePopup(popup) {
     popup.classList.remove("popup_opened");
+    document.removeEventListener("keydown", handleEscDown);
 }
 
 function openPopup(popup) {
     popup.classList.add("popup_opened");
+    document.addEventListener("keydown", handleEscDown);
 
 }
 
@@ -65,7 +67,7 @@ function handleFormCancel(event) {
 
 
 
-function handleProfileFormOpen() {
+function handleProfileFormOpen(resetFormValidations) {
     const currentName = profileName.textContent;
     const currentGroup = profileGroup.textContent;
 
@@ -73,22 +75,16 @@ function handleProfileFormOpen() {
     groupInput.value = currentGroup;
 
     openPopup(profileFormPopup);
+    resetFormValidations();
 
 }
 
-function handlePlaceFormOpen() {
+function handlePlaceFormOpen(resetFormValidations) {
     openPopup(placeFormPopup);
+    resetFormValidations();
 }
 
-function disableSubmitButton(submitButton) {
-    submitButton.disabled = true;
-    submitButton.classList.add("popup__button_disabled");
-}
-
-function handlePlaceFormSubmit(event, makeViewableCard) {
-    // This line stops the browser from 
-    // submitting the form in the default way.
-    event.preventDefault();
+function handlePlaceFormSubmit(makeViewableCard, event) {
 
     const newCard = {
         name: titleInput.value,
@@ -97,16 +93,16 @@ function handlePlaceFormSubmit(event, makeViewableCard) {
     placeForm.reset();
     makeViewableCard(newCard);
     closePopup(event.target.closest(".popup_opened"));
-    disableSubmitButton(event.submitter);
 }
 
 //--
 //Event listeners
 //--
-function setEventListeners(makeViewableCard) {
+function setEventListeners(makeViewableCard, resetFormValidations) {
     profileForm.addEventListener('submit', handleProfileFormSubmit);
-    placeForm.addEventListener('submit', () => {
-        handlePlaceFormSubmit(event, makeViewableCard);
+
+    placeForm.addEventListener('submit', (event) => {
+        handlePlaceFormSubmit(makeViewableCard, event);
     });
     cancelButtons.forEach(function(cancelButton) {
         cancelButton.addEventListener('click', handleFormCancel);
@@ -114,9 +110,13 @@ function setEventListeners(makeViewableCard) {
     overlays.forEach(function(overlay) {
         overlay.addEventListener('click', handleOverlayClick);
     })
-    editButton.addEventListener("click", handleProfileFormOpen);
-    addButton.addEventListener("click", handlePlaceFormOpen);
-    document.addEventListener("keydown", handleEscDown);
+    editButton.addEventListener("click", () => {
+        handleProfileFormOpen(resetFormValidations);
+    });
+    addButton.addEventListener("click", () => {
+        handlePlaceFormOpen(resetFormValidations);
+    });
+
 }
 
 export { openPopup, closePopup, setEventListeners };;
