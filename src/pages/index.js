@@ -4,10 +4,10 @@
 //--
 //import statements
 //--
-import Card from "./Card.js";
-import FormValidator from "./FormValidator.js";
-import initialCards from "./cards.js";
-import * as utils from "./utils.js";
+import Card from "./Card.js.js";
+import FormValidator from "./FormValidator.js.js";
+import initialCards from "./cards.js.js";
+import * as utils from "./utils.js.js";
 //--
 //Form Validator settings
 //--
