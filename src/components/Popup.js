@@ -17,7 +17,11 @@ class Popup {
     setEventListeners() {
         //create an event listener for click on close button or semitransparent background
         this.popupElement.querySelector('.cancel').addEventListener('click', this.close); //close button
-        this.popupElement.addEventListener('click', this.close); //popup semitransparent background
+        this.popupElement.addEventListener('click', (evt) => {
+            if (evt.target === this.popupElement) {
+                this.close(); //popup semitransparent background
+            }
+        });
     }
 
     open() {
@@ -28,9 +32,6 @@ class Popup {
 
     close() {
         //removes the class we added and the eventlistener for the Esc keyup
-        console.log('this.popupElement');
-        console.log(this.popupElement);
-        alert('closing Popup')
         this.popupElement.classList.remove('popup_opened');
         document.removeEventListener('keyup', this._handleEscUp);
     }
