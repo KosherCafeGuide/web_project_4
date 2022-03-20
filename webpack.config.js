@@ -40,8 +40,13 @@ module.exports = {
                 use: [
                     MiniCssExtractPlugin.loader,
                     {
-                        loader: "css-loader"
+                        loader: "css-loader",
+                        // add an options object
+                        options: { importLoaders: 1 }
+
                     },
+                    // add postcss-loader
+                    "postcss-loader"
                 ],
             },
             {

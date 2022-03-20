@@ -1,15 +1,10 @@
 //Card class with Export
-//import openPopup from "./utils.js";
-const popupImage = document.querySelector(".popup__image");
-const popupImageTitle = document.querySelector(".popup__image-title");
-const popupImagePopup = popupImage.closest(".popup");
 class Card {
-
-    constructor(data, templateSelector, openPopup) {
-        this._title = data.name;
-        this._imageUrl = data.link;
+    constructor(data, templateSelector) {
+        this._title = data.data.name; //not sure why I need the extra "data." here!
+        this._imageUrl = data.data.link;
         this._templateSelector = templateSelector; // "#card-template"
-        this._openPopup = openPopup;
+        this._handleCardClick = data.handleCardClick;
 
     };
     _getTemplate() {
@@ -27,12 +22,7 @@ class Card {
         this.image.alt = this._title;
     }
 
-    _expandImage() {
-        popupImage.src = this._imageUrl;
-        popupImage.alt = this._title;
-        popupImageTitle.textContent = this._title;
-        this._openPopup(popupImagePopup);
-    }
+
     _addEventListeners() {
         this.deleteBtn = this.cardElement.querySelector(".element__delete-btn")
         this.likeBtn = this.cardElement.querySelector(".element__like-toggle");
@@ -43,7 +33,10 @@ class Card {
             this.likeBtn.classList.toggle("element__like-toggle-active");
         })
         this.image.addEventListener("click", () => {
-            this._expandImage()
+            this._handleCardClick({
+                link: this._imageUrl,
+                name: this._title
+            });
         });
     }
 

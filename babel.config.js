@@ -1,3 +1,6 @@
+/*const postcss = require('postcss');
+const autoprefixer = require('autoprefixer');
+const cssnano = require('cssnano');*/
 const presets = [
     ['@babel/preset-env', { // preset you want to use
         // browser versions in which we want our code supported
@@ -10,4 +13,12 @@ const presets = [
     }]
 ];
 
-module.exports = { presets };
+module.exports = {
+    presets,
+    plugins: [
+        /*postcss,
+        autoprefixer,
+        cssnano({ preset: "default" })*/
+    ],
+
+};

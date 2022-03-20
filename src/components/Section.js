@@ -1,7 +1,17 @@
 class Section {
-    constructor({ items, renderer }, cardCSSClassSelector) {
-        this.items = items;
-        this.renderer = renderer; //();
-        this.cardCSSClassSelector = cardCSSClassSelector;
+    constructor({ items, renderer }, containerSelector) {
+        this._items = items;
+        this._renderer = renderer; //();
+        this._container = document.querySelector(containerSelector);
+    }
+    additem(element) {
+        this._container.prepend(element);
+    }
+    renderItems(items) {
+        items.forEach(item => {
+            this._renderer(item);
+        })
+
     }
 }
+export default Section;
