@@ -1,4 +1,5 @@
 import Popup from "./Popup";
+
 class PopupWithImage extends Popup {
     open = ({ link, name }) => {
         //puts name from args to the .popup__caption selector

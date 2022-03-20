@@ -5,15 +5,15 @@ class FormValidator {
         this.formElement = formElement; //form element to be validated
     }
     _hideInputError(input) {
-        const errorspan = this.formElement.querySelector("#" + input.id + "-error");
-        errorspan.textContent = "";
-        errorspan.classList.remove(this.settings.errorClass);
+        const errorElement = this.formElement.querySelector("#" + input.id + "-error");
+        errorElement.textContent = "";
+        errorElement.classList.remove(this.settings.errorClass);
         input.classList.remove(this.settings.inputErrorClass);
     }
     _showInputError(input) {
-        const errorspan = this.formElement.querySelector("#" + input.id + "-error");
-        errorspan.textContent = input.validationMessage;
-        errorspan.classList.add(this.settings.errorClass);
+        const errorElement = this.formElement.querySelector("#" + input.id + "-error");
+        errorElement.textContent = input.validationMessage;
+        errorElement.classList.add(this.settings.errorClass);
         input.classList.add(this.settings.inputErrorClass);
     }
 

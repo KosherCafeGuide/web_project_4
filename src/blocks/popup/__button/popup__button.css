@@ -2,3 +2,8 @@
     color: white;
     background-color: black;
 }
+
+.popup__button:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}

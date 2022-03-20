@@ -1,11 +1,11 @@
 import Popup from "./Popup";
+
 class PopupWithForm extends Popup {
     constructor({ popupSelector, handleFormSubmit }) {
         super(popupSelector); //this.popupElement
         this._handleFormSubmit = handleFormSubmit;
         this._form = this.popupElement.querySelector('.popup__form');
-        this.close = this.close.bind(this);
-        //this.setEventListeners = this.setEventListeners.bind(this);
+
     }
     _getInputValues() {
         const inputs = [...this._form.querySelectorAll('.popup__input')];
@@ -26,16 +26,16 @@ class PopupWithForm extends Popup {
 
         this._form.addEventListener('submit', () => this._formSubmit());
     }
-    close() {
+    close = () => { //arrow function method, retains context without need for .bind(this)
 
         this._form.reset();
         super.close();
     }
 
-    setPlaceholders(placeHolderValues) { //currently user={name:"value of name", job: "value of job"}
+    setPlaceholders(placeHolderValues) {
         const inputs = [...this._form.querySelectorAll('.popup__input')];
         inputs.forEach((input) => {
-            input.value = placeHolderValues[input.name];
+            input.placeholder = placeHolderValues[input.name];
         });
     }
 }

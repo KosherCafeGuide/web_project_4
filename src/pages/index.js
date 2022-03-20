@@ -27,18 +27,20 @@ const userInfo = new UserInfo({
 //--
 //Cards Setup
 //--
+const renderCard = (data) => {
+    const card = new Card({
+        data,
+        handleCardClick: () => {
+            openImagePopup(data);
+        }
+
+    }, cardsConfig.cardSelector);
+    cardsList.addItem(card.generateCard());
+}
 const cardsList = new Section({
     items: initialCards,
     renderer: (data) => {
-        const card = new Card({
-            data,
-            templateSelector: cardsConfig.cardSelector,
-            handleCardClick: () => {
-                openImagePopup(data);
-            }
-
-        }, cardsConfig.cardSelector);
-        cardsList.additem(card.generateCard());
+        renderCard(data);
     }
 }, cardsConfig.placeswrap);
 
@@ -65,13 +67,7 @@ const userInfoPopup = new PopupWithForm({
 const newCardPopup = new PopupWithForm({
     popupSelector: popupConfig.cardFormModalWindow,
     handleFormSubmit: (data) => {
-        const card = new Card({
-            data,
-            handleCardClick: () => {
-                openImagePopup(data);
-            }
-        }, cardsConfig.cardSelector);
-        cardsList.additem(card.generateCard())
+        renderCard(data);
     }
 });
 
@@ -108,7 +104,13 @@ const openPlaceForm = document.querySelector('.profile__add-btn');
 const openProfileFormWithCurrentInfo = () => {
     userInfoPopup.open();
     userInfoPopup.setPlaceholders(userInfo.getUserInfo());
+    profileFormValidator.resetValidation();
 }
 
 openProfileForm.addEventListener('click', openProfileFormWithCurrentInfo);
-openPlaceForm.addEventListener('click', newCardPopup.open);
+
+const openPlaceFormEmpty = () => {
+    newCardPopup.open();
+    placeFormValidator.resetValidation();
+}
+openPlaceForm.addEventListener('click', openPlaceFormEmpty);

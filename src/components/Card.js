@@ -24,13 +24,13 @@ class Card {
 
 
     _addEventListeners() {
-        this.deleteBtn = this.cardElement.querySelector(".element__delete-btn")
-        this.likeBtn = this.cardElement.querySelector(".element__like-toggle");
-        this.deleteBtn.addEventListener("click", () => {
-            this.cardElement.remove();
+        const deleteBtn = this.cardElement.querySelector(".element__delete-btn")
+        const likeBtn = this.cardElement.querySelector(".element__like-toggle");
+        deleteBtn.addEventListener("click", () => {
+            this.cardElement.remove(); //this.cardElement=null; does not work
         });
-        this.likeBtn.addEventListener("click", () => {
-            this.likeBtn.classList.toggle("element__like-toggle-active");
+        likeBtn.addEventListener("click", () => {
+            likeBtn.classList.toggle("element__like-toggle-active");
         })
         this.image.addEventListener("click", () => {
             this._handleCardClick({
