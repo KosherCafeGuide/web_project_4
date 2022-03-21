@@ -32,10 +32,10 @@ class PopupWithForm extends Popup {
         super.close();
     }
 
-    setPlaceholders(placeHolderValues) {
+    prefillForm(inputValues) {
         const inputs = [...this._form.querySelectorAll('.popup__input')];
         inputs.forEach((input) => {
-            input.placeholder = placeHolderValues[input.name];
+            input.value = inputValues[input.name];
         });
     }
 }

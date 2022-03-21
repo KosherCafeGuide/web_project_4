@@ -8,15 +8,15 @@ class Card {
 
     };
     _getTemplate() {
-        this.cardElement = document
+        this._cardElement = document
             .querySelector(this._templateSelector)
             .content
             .querySelector(".element")
             .cloneNode(true);
     }
     _addDataToCard() {
-        this.title = this.cardElement.querySelector(".element__image-title");
-        this.image = this.cardElement.querySelector(".element__image");
+        this.title = this._cardElement.querySelector(".element__image-title");
+        this.image = this._cardElement.querySelector(".element__image");
         this.title.textContent = this._title;
         this.image.src = this._imageUrl;
         this.image.alt = this._title;
@@ -24,10 +24,11 @@ class Card {
 
 
     _addEventListeners() {
-        const deleteBtn = this.cardElement.querySelector(".element__delete-btn")
-        const likeBtn = this.cardElement.querySelector(".element__like-toggle");
+        const deleteBtn = this._cardElement.querySelector(".element__delete-btn")
+        const likeBtn = this._cardElement.querySelector(".element__like-toggle");
         deleteBtn.addEventListener("click", () => {
-            this.cardElement.remove(); //this.cardElement=null; does not work
+            this._cardElement.remove(); //this._cardElement=null; does not work
+            this._cardElement = null;
         });
         likeBtn.addEventListener("click", () => {
             likeBtn.classList.toggle("element__like-toggle-active");
@@ -45,7 +46,7 @@ class Card {
         this._addDataToCard();
         this._addEventListeners();
 
-        return this.cardElement;
+        return this._cardElement;
     }
 }
 

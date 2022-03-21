@@ -39,21 +39,17 @@ const renderCard = (data) => {
 }
 const cardsList = new Section({
     items: initialCards,
-    renderer: (data) => {
-        renderCard(data);
-    }
+    renderer: renderCard,
 }, cardsConfig.placeswrap);
 
 //--
 //Image Popup Setup
 //--
 const imagePopup = new PopupWithImage(popupConfig.imageModalWindow);
-const openImagePopup = (data) => {
-        imagePopup.open(data);
-    }
-    //--
-    //User Info Popup Setup
-    //--
+const openImagePopup = (data) => { imagePopup.open(data); };
+//--
+//User Info Popup Setup
+//--
 const userInfoPopup = new PopupWithForm({
     popupSelector: popupConfig.editFormModalWindow,
     handleFormSubmit: (data) => {
@@ -103,7 +99,7 @@ const openProfileForm = document.querySelector('.profile__edit-btn');
 const openPlaceForm = document.querySelector('.profile__add-btn');
 const openProfileFormWithCurrentInfo = () => {
     userInfoPopup.open();
-    userInfoPopup.setPlaceholders(userInfo.getUserInfo());
+    userInfoPopup.prefillForm(userInfo.getUserInfo());
     profileFormValidator.resetValidation();
 }
 
