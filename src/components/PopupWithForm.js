@@ -5,6 +5,7 @@ class PopupWithForm extends Popup {
         super(popupSelector); //this.popupElement
         this._handleFormSubmit = handleFormSubmit;
         this._form = this.popupElement.querySelector('.popup__form');
+        this._submitBtn = this._form.querySelector('.popup__button');
 
     }
     _getInputValues() {
@@ -17,14 +18,16 @@ class PopupWithForm extends Popup {
 
         return inputValues;
     }
+    changeSubmitBtnText(msg = "saving") {
+        this._submitBtn.textContent = msg;
+    }
     _formSubmit() {
         this._handleFormSubmit(this._getInputValues());
-        this.close();
     }
     setEventListeners() {
         super.setEventListeners();
 
-        this._form.addEventListener('submit', () => this._formSubmit());
+        this._form.addEventListener('submit', (evt) => this._formSubmit(evt));
     }
     close = () => { //arrow function method, retains context without need for .bind(this)
 

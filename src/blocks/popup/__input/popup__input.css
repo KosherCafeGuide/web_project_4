@@ -3,4 +3,32 @@
     border-top: none;
     border-left: none;
     border-right: none;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    width: 358px;
+}
+
+.popup__input:nth-of-type(1) {
+    margin: 54px 36px 0;
+    padding: 0 0 13.26px 0;
+}
+
+.popup__input:nth-of-type(2) {
+    margin: 29.74px 36px 0;
+    padding: 0 0 13.34px 0;
+}
+
+@media screen and (max-width: 730px) {
+    .popup__input {
+        width: 238px;
+    }
+    .popup__input:nth-of-type(1) {
+        margin: 76px 22px 0;
+        padding: 0 0 9px 0;
+    }
+    .popup__input:nth-of-type(2) {
+        margin: 30px 22px 0 22px;
+        padding: 0 0 9px 0;
+    }
 }

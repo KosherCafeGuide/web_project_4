@@ -1,0 +1,15 @@
+.delete-confirmation__label {
+    position: relative;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29.05px;
+    margin: 34px 36px 0 36px;
+}
+
+@media screen and (max-width: 730px) {
+    .delete-confirmation__label {
+        font-size: 18px;
+        line-height: 22px;
+        margin: 25px 22px 0 22px;
+    }
+}

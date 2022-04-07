@@ -17,13 +17,15 @@
     </header>
     <main>
         <section class="profile">
-            <img class="profile__avatar" id="profile__avatar" alt="avatar of contributer">
+            <div class="profile__avatar" id="profile__avatar" alt="avatar of contributer">
+                <button type="button" class="profile__edit-avatar-btn" aria-label="Edit Avatar"></button>
+            </div>
             <div class="profile__info">
                 <div class="profile__top-line">
-                    <h1 class="profile__name">Jacques Cousteau </h1>
+                    <h1 class="profile__name"></h1>
                     <button type="button" class="profile__edit-btn" aria-label="Edit"></button>
                 </div>
-                <p class="profile__job">Explorer</p>
+                <p class="profile__job"></p>
             </div>
             <button type="button" class="profile__add-btn" aria-label="Add" value="Add"></button>
         </section>
@@ -45,7 +47,7 @@
                 <span class="popup__error popup__error_visible" id="name-input-error"></span>
                 <input type="text" id="job-input" minlength=2 maxlength=200 class="edit-profile-form__field edit-profile-form__field_type_job popup__input" name="job" required>
                 <span class="popup__error popup__error_visible" id="job-input-error"></span>
-                <button type="submit" class="edit-profile-form__save popup__button" aria-label="save" value="Save">Save</button>
+                <button type="submit" class="edit-profile-form__save popup__button" aria-label="save" id="profile" value="Save">Save</button>
                 <button type="button" class="cancel" aria-label="cancel" value="Cancel"></button>
             </form>
         </div>
@@ -59,7 +61,19 @@
                 <span class="popup__error popup__error_visible" id="title-input-error"></span>
                 <input type="url" id="url-input" class="add-place-form__field add-place-form__field_type_link popup__input" name="link" placeholder="Image link" required>
                 <span class="popup__error popup__error_visible" id="url-input-error"></span>
-                <button type="submit" class="add-place-form__save popup__button" aria-label="save" value="Save">Save</button>
+                <button type="submit" class="add-place-form__save popup__button" aria-label="save" id="place" value="Save">Save</button>
+                <button type="button" class="cancel" aria-label="cancel" value="Cancel"></button>
+            </form>
+        </div>
+
+    </div>
+    <div class="popup popup-avatar-form">
+        <div class="popup__white-box">
+            <form class="update-avatar-form popup__form" name="updateAvatarForm" novalidate>
+                <h2 class="update-avatar-form__label">Change profile picture</h2>
+                <input type="url" id="url-input" class="update-avatar-form__field update-avatar-form__field_type_link popup__input" name="link" placeholder="Image link" required>
+                <span class="popup__error popup__error_visible" id="url-input-error"></span>
+                <button type="submit" class="update-avatar-form__save popup__button" aria-label="save" id="avatar" value="Save">Save</button>
                 <button type="button" class="cancel" aria-label="cancel" value="Cancel"></button>
             </form>
         </div>
@@ -73,13 +87,26 @@
             <button type="button" class="cancel" aria-label="Close" value="Close"></button>
         </div>
     </div>
+    <div class="popup popup-delete-confirmation">
+        <div class="popup__white-box">
+            <form class="popup__confirmation delete-confirmation popup__form" name="Confirmation" novalidate>
+                <h2 class="delete-confirmation__label">Are you sure?</h2>
+                <button type="submit" class="popup__button" aria-label="Yes" value="Yes">Yes</button>
+                <button type="button" class="cancel" aria-label="cancel" value="Cancel"></button>
+            </form>
+        </div>
+
+    </div>
     <template id="element">
         <div class="element">
             <button class="element__delete-btn" aria-label="Delete" value="Delete"></button>
             <img class="element__image">
             <div class="element__footer">
                 <h2 class="element__image-title"></h2>
-                <button type="button" class="element__like-toggle" aria-label="Like"></button>
+                <button type="button" class="element__like-toggle" aria-label="Like">
+                    <span class="element__likes-count"></span>
+                </button>
+                
             </div>
         </div>
     </template>

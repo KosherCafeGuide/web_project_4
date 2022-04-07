@@ -14,3 +14,4 @@ Javascript includes importing and exporting constants, functions, and Classes. W
 
 ## GitHub page where this project may be viewed:
 https://koshercafeguide.github.io/web_project_4/index.html
+

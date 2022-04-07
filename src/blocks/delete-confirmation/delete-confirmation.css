@@ -1,0 +1,11 @@
+.delete-confirmation {
+    /*margin: 34px 36px 36px;*/
+    max-width: 430px;
+    z-index: 3;
+}
+
+@media screen and (max-width: 730px) {
+    .delete-confirmation {
+        max-width: 282px;
+    }
+}

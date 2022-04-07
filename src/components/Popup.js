@@ -19,7 +19,7 @@ class Popup {
         this.popupElement.querySelector('.cancel').addEventListener('click', this.close); //close button
         //suggestion of mousedown used. eventListeners using arrow functions can't be removed,
         // and if I don't use an arrow function I don't have access to both evt.target and this.popupElement
-        // so if I can't remove it in close, I'm not going to create a new on with each open!
+        // so if I can't remove it in close, I'm not going to create a new on with each open!90-/8472425451132        
         this.popupElement.addEventListener('mousedown', (evt) => {
             if (evt.target === this.popupElement) {
                 this.close(); //popup semitransparent background
