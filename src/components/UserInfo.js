@@ -13,11 +13,11 @@
          return user;
      }
 
-     setUserInfo({ userName, job, userID, avatarURL }) {
+     setUserInfo({ userName, job, userID }) {
          this.nameElement.textContent = userName;
          this.jobElement.textContent = job;
          this.userID = userID;
-         this.avatarElement.style.backgroundImage = `url(${avatarURL})`;
+         //this.avatarElement.style.backgroundImage = `url(${avatarURL})`;
      }
      getUserID() {
          return this.userID;

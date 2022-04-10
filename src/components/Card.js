@@ -47,7 +47,7 @@ class Card {
         if (canDelete) {
             deleteBtn.classList.remove("hide");
             deleteBtn.addEventListener("click", () => {
-                this._confirmDelete(this._cardID);
+                this._confirmDelete(this);
 
             });
         } else {
@@ -87,6 +87,9 @@ class Card {
         this._addEventListeners(canDelete);
 
         return this._cardElement;
+    }
+    getID() {
+        return this._cardID;
     }
 }
 

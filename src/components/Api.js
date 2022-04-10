@@ -32,14 +32,15 @@ class API {
     }
     addCard({ name, link }) { //index.js Line 136
         return fetch(`${this.baseURL}/cards`, {
-            method: "POST",
-            headers: this.headers,
-            body: JSON.stringify({
-                name: name,
-                link: link
-            })
+                method: "POST",
+                headers: this.headers,
+                body: JSON.stringify({
+                    name: name,
+                    link: link
+                })
 
-        });
+            })
+            .then(res => res.json());
     }
     deleteCard(cardID) { //index.js Line 109
         return this._customFetch(`${this.baseURL}/cards/${cardID}`, "DELETE");
@@ -77,7 +78,6 @@ class API {
         return this._customFetch(`${this.baseURL}/cards/likes/${cardID}`, "DELETE");
     }
     updateAvatar({ link }) {
-        console.log("link", link);
         return fetch(`${this.baseURL}/users/me/avatar`, {
                 method: "PATCH",
                 headers: this.headers,

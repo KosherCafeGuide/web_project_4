@@ -41,8 +41,8 @@ const renderCard = (data) => {
         handleCardClick: () => {
             openImagePopup(data);
         },
-        confirmDelete: (cardID) => {
-            openDeleteConfirmationPopup(cardID)
+        confirmDelete: (cardToDelete) => {
+            openDeleteConfirmationPopup(cardToDelete)
         },
         toggleMyLikeTo: (cardID, isLikedByMe) => {
             if (isLikedByMe) {
@@ -60,23 +60,23 @@ const cardsList = new Section({
 }, cardsConfig.placeswrap);
 
 let myID = "0";
-let hardRefresh = false;
+//let //hardRefresh = false;
 
-function refreshScreen() {
-    Promise.all([api.getInitialCards(), api.getUserInfo()])
-        .then(([cardData, userData]) => {
-            if (hardRefresh === true) {
-                location.href = location.href;
-                hardRefresh = false;
-            }
-            myID = userData._id;
+//function refreshScreen() {
+Promise.all([api.getInitialCards(), api.getUserInfo()])
+    .then(([cardData, userData]) => {
+        /*if ( //hardRefresh === true) {
+            location.href = location.href;
+            //hardRefresh = false;
+        }*/
+        myID = userData._id;
+        cardsList.renderItems(cardData);
+        userInfo.setUserInfo({ userName: userData.name, job: userData.about, userID: userData._id });
+        userInfo.setAvatar(userData.avatar);
+    })
 
-            cardsList.renderItems(cardData);
-            userInfo.setUserInfo({ userName: userData.name, job: userData.about, userID: userData._id, avatarURL: userData.avatar });
-        })
-
-}
-refreshScreen();
+//}
+//refreshScreen();
 //--
 //Image Popup Setup
 //--
@@ -97,7 +97,7 @@ const userInfoPopup = new PopupWithForm({
             .then(res => {
                 if (res.ok) {
                     userInfo.setUserInfo({ userName: data.name, job: data.job });
-                    hardRefresh = true;
+                    //hardRefresh = true;
                     userInfoPopup.changeSubmitBtnText("Profile Information updated successfully");
                     //refreshScreen();
                 } else {
@@ -117,16 +117,15 @@ const userInfoPopup = new PopupWithForm({
 });
 const deleteConfirmationPopup = new PopupWithConfirmation({
     popupSelector: popupConfig.deleteConfirmationWindow,
-    handleSubmit: (cardID) => {
-        //deleConfirmationPopup.changeSubmitBtnText();
-        api.deleteCard(cardID)
+    handleSubmit: (card) => {
+        deleteConfirmationPopup.changeSubmitBtnText("Deleting...");
+        api.deleteCard(card.getID())
             .then(res => {
-
-                if (res.message === "This post has been deleted") {
-                    //deleConfirmationPopup.changeSubmitBtnText("Card Deleted");
-                    hardRefresh = true;
-                    refreshScreen();
-
+                if (res.message !== undefined) {
+                    deleteConfirmationPopup.changeSubmitBtnText("Card Deleted");
+                    //hardRefresh = true;
+                    //refreshScreen();
+                    card.deleteCard();
                 } else {
                     reject("error while deleting image from server")
                 }
@@ -135,7 +134,8 @@ const deleteConfirmationPopup = new PopupWithConfirmation({
                 console.log(error);
             })
             .finally(res => {
-                //deleteConfirmationPopup.changeSubmitBtnText("Yes");
+                deleteConfirmationPopup.changeSubmitBtnText("Yes");
+
                 deleteConfirmationPopup.close();
             })
 
@@ -153,15 +153,10 @@ const newCardPopup = new PopupWithForm({
         api.addCard(data)
             .then(res => {
                 data.owner = { _id: userInfo.getUserID() };
-                if (res.ok) {
-                    hardRefresh = true;
-                    refreshScreen();
-                    newCardPopup.changeSubmitBtnText("New photo successfully added");
-
-                } else {
-                    console.log("Error adding Card");
-                }
-
+                data._id = res._id;
+                newCardPopup.changeSubmitBtnText("New photo successfully added");
+                data.owner._id = myID;
+                renderCard(data);
             })
             .catch({
 
@@ -181,10 +176,10 @@ const changeAvatarPopup = new PopupWithForm({
         api.updateAvatar(data)
             .then(res => {
                 if (res.avatar === data.link) {
-                    hardRefresh = true;
+                    //hardRefresh = true;
                     changeAvatarPopup.changeSubmitBtnText("Avatar successfully updated");
-                    refreshScreen();
-
+                    //refreshScreen();
+                    userInfo.setAvatar(data.link);
 
 
                 } else {
