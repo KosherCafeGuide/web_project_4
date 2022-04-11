@@ -7,11 +7,10 @@ class Card {
         this._ownerID = data.data.owner._id;
         this._likes = data.data.likes;
 
+        this._handleLike = data.handleLike;
+        this._handleUnlike = data.handleUnlike;
         this._handleCardClick = data.handleCardClick;
         this._confirmDelete = data.confirmDelete; //returns true if should delete 
-        this._toggleMyLikeTo = data.toggleMyLikeTo; //toggle like status on server
-
-
         this._templateSelector = templateSelector; // "#card-template"
 
         this._doILike = this._doILike.bind(this);
@@ -53,19 +52,19 @@ class Card {
         } else {
             deleteBtn.classList.add("hide");
         }
-        this.likeBtn = this._cardElement.querySelector(".element__like-toggle");
+        this._likeButton = this._cardElement.querySelector(".element__like-toggle");
         this.isLikedByMe = this._likes.find(this._doILike);
-        this._setLikeIcon();
-        this.likeBtn.addEventListener("click", () => {
+        this.setLikeIcon();
+
+        this._likeButton.addEventListener('click', () => {
             this.isLikedByMe = !this.isLikedByMe;
             if (this.isLikedByMe) {
-                this.likesCount.textContent = Number(this.likesCount.textContent) + 1;
+                this._handleLike(this);
             } else {
-                this.likesCount.textContent = Number(this.likesCount.textContent) - 1;
+                this._handleUnlike(this);
             }
-            this._toggleMyLikeTo(this._cardID, this.isLikedByMe);
-            this._setLikeIcon();
-        })
+        });
+
         this.image.addEventListener("click", () => {
             this._handleCardClick({
                 link: this._imageUrl,
@@ -73,11 +72,11 @@ class Card {
             });
         });
     }
-    _setLikeIcon() {
+    setLikeIcon() {
         if (this.isLikedByMe) {
-            this.likeBtn.classList.add("element__like-toggle-active");
+            this._likeButton.classList.add("element__like-toggle-active");
         } else {
-            this.likeBtn.classList.remove("element__like-toggle-active");
+            this._likeButton.classList.remove("element__like-toggle-active");
         }
     }
     generateCard(canDelete, myID) {

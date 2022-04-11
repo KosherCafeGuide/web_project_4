@@ -6,13 +6,13 @@ class PopupWithForm extends Popup {
         this._handleFormSubmit = handleFormSubmit;
         this._form = this.popupElement.querySelector('.popup__form');
         this._submitBtn = this._form.querySelector('.popup__button');
+        this._inputs = [...this._form.querySelectorAll('.popup__input')];
 
     }
     _getInputValues() {
-        const inputs = [...this._form.querySelectorAll('.popup__input')];
         const inputValues = {};
 
-        inputs.forEach((input) => {
+        this._inputs.forEach((input) => {
             inputValues[input.name] = input.value;
         });
 
@@ -36,8 +36,8 @@ class PopupWithForm extends Popup {
     }
 
     prefillForm(inputValues) {
-        const inputs = [...this._form.querySelectorAll('.popup__input')];
-        inputs.forEach((input) => {
+
+        this._inputs.forEach((input) => {
             input.value = inputValues[input.name];
         });
     }

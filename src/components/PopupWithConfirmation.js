@@ -9,7 +9,6 @@ class PopupWithConfirmation extends Popup {
     _confirmSubmit(event) {
         event.preventDefault();
         this._handleSubmit(this.card);
-        this.close();
     }
     open(card) {
         this.card = card;

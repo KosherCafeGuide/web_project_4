@@ -1,10 +1,4 @@
 import "./index.css";
-/*import avatar from "../images/avatar.jpg";
-const avatarProfile = document.getElementById("profile__avatar");
-avatarProfile.style.backgroundImage = `url(${avatar})`;*/
-//import and implement classes from Card and FormValidator 
-//and implement functions in utils, using preset cards
-
 //--
 //import statements
 //--
@@ -32,10 +26,7 @@ const userInfo = new UserInfo({
 //--
 //Cards Setup
 //--
-
-
-const renderCard = (data) => {
-    let canDelete = ((data.owner._id === myID) ? true : false);
+function createCard(data) {
     const card = new Card({
         data,
         handleCardClick: () => {
@@ -44,48 +35,68 @@ const renderCard = (data) => {
         confirmDelete: (cardToDelete) => {
             openDeleteConfirmationPopup(cardToDelete)
         },
-        toggleMyLikeTo: (cardID, isLikedByMe) => {
-            if (isLikedByMe) {
-                api.likeCard(cardID);
-            } else {
-                api.unlikeCard(cardID);
-            }
-        }
-
+        handleLike,
+        handleUnlike,
     }, cardsConfig.cardSelector);
+    return card;
+}
+
+const renderCard = (data) => {
+    const canDelete = ((data.owner._id === myID) ? true : false);
+    const card = createCard(data);
     cardsList.addItem(card.generateCard(canDelete, myID));
 }
+
+
+function handleLike(card) {
+    console.log("card ID", card.getID())
+    api.likeCard(card.getID())
+        .then((res) => {
+            card.setLikeIcon(true)
+
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+}
+
+function handleUnlike(card) {
+    api.unlikeCard(card.getID())
+        .then((res) => {
+            card.setLikeIcon(false)
+
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+}
+
+
+
 const cardsList = new Section({
     renderer: renderCard,
 }, cardsConfig.placeswrap);
 
 let myID = "0";
-//let //hardRefresh = false;
 
-//function refreshScreen() {
 Promise.all([api.getInitialCards(), api.getUserInfo()])
     .then(([cardData, userData]) => {
-        /*if ( //hardRefresh === true) {
-            location.href = location.href;
-            //hardRefresh = false;
-        }*/
+
         myID = userData._id;
         cardsList.renderItems(cardData);
         userInfo.setUserInfo({ userName: userData.name, job: userData.about, userID: userData._id });
         userInfo.setAvatar(userData.avatar);
     })
+    .catch((err) => {
+        console.log(err);
+    });
 
-//}
-//refreshScreen();
 //--
 //Image Popup Setup
 //--
 const imagePopup = new PopupWithImage(popupConfig.imageModalWindow);
 const openImagePopup = (data) => { imagePopup.open(data); };
-//--
-//SubmitButton TextContent
-//--
-//const userInfoSubmitText = document.querySelector(submitButtonConfig.profile).
+
 //--
 //User Info Popup Setup
 //--
@@ -95,21 +106,14 @@ const userInfoPopup = new PopupWithForm({
         userInfoPopup.changeSubmitBtnText("Updating profile information");
         api.editProfile({ userName: data.name, about: data.job })
             .then(res => {
-                if (res.ok) {
-                    userInfo.setUserInfo({ userName: data.name, job: data.job });
-                    //hardRefresh = true;
-                    userInfoPopup.changeSubmitBtnText("Profile Information updated successfully");
-                    //refreshScreen();
-                } else {
-                    console.log("error updating User Profile");
-                    console.log(res.statusText);
-                    userInfoPopup.changeSubmitBtnText(res.statusText);
-                }
-            })
-            .finally(res => {
+                userInfo.setUserInfo({ userName: data.name, job: data.job });
                 userInfoPopup.changeSubmitBtnText("Save");
                 userInfoPopup.close();
             })
+            .catch((err) => {
+                console.log(err);
+            })
+
 
 
     }
@@ -121,23 +125,14 @@ const deleteConfirmationPopup = new PopupWithConfirmation({
         deleteConfirmationPopup.changeSubmitBtnText("Deleting...");
         api.deleteCard(card.getID())
             .then(res => {
-                if (res.message !== undefined) {
-                    deleteConfirmationPopup.changeSubmitBtnText("Card Deleted");
-                    //hardRefresh = true;
-                    //refreshScreen();
-                    card.deleteCard();
-                } else {
-                    reject("error while deleting image from server")
-                }
+                card.deleteCard();
+                deleteConfirmationPopup.changeSubmitBtnText("Yes");
+                deleteConfirmationPopup.close();
             })
             .catch(error => {
                 console.log(error);
             })
-            .finally(res => {
-                deleteConfirmationPopup.changeSubmitBtnText("Yes");
 
-                deleteConfirmationPopup.close();
-            })
 
     }
 });
@@ -154,18 +149,14 @@ const newCardPopup = new PopupWithForm({
             .then(res => {
                 data.owner = { _id: userInfo.getUserID() };
                 data._id = res._id;
-                newCardPopup.changeSubmitBtnText("New photo successfully added");
                 data.owner._id = myID;
                 renderCard(data);
-            })
-            .catch({
-
-            })
-            .finally(res => {
                 newCardPopup.changeSubmitBtnText("Save");
                 newCardPopup.close();
             })
-
+            .catch(error => {
+                console.log(error);
+            })
     }
 });
 
@@ -176,19 +167,16 @@ const changeAvatarPopup = new PopupWithForm({
         api.updateAvatar(data)
             .then(res => {
                 if (res.avatar === data.link) {
-                    //hardRefresh = true;
-                    changeAvatarPopup.changeSubmitBtnText("Avatar successfully updated");
-                    //refreshScreen();
                     userInfo.setAvatar(data.link);
-
-
+                    changeAvatarPopup.changeSubmitBtnText("Save");
+                    changeAvatarPopup.close();
                 } else {
-                    console.log("Error changing Avatar image");
+                    reject("Error changing Avatar image");
                 }
 
             })
-            .catch({
-
+            .catch(error => {
+                console.log(error);
             })
             .finally(res => {
                 changeAvatarPopup.changeSubmitBtnText("Save");
