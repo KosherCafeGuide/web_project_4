@@ -49,22 +49,25 @@ const renderCard = (data) => {
 
 
 function handleLike(card) {
-    console.log("card ID", card.getID())
     api.likeCard(card.getID())
         .then((res) => {
-            card.setLikeIcon(true)
+            card.isLikedByMe = true;
+            card.setLikeIcon(true);
+            card.updateLikesCount(res.likes.length);
 
         })
         .catch((err) => {
             console.log(err);
-        });
+        })
+        .finally(() => {});
 }
 
 function handleUnlike(card) {
     api.unlikeCard(card.getID())
         .then((res) => {
-            card.setLikeIcon(false)
-
+            card.isLikedByMe = false;
+            card.setLikeIcon(false);
+            card.updateLikesCount(res.likes.length);
         })
         .catch((err) => {
             console.log(err);
@@ -84,8 +87,7 @@ Promise.all([api.getInitialCards(), api.getUserInfo()])
 
         myID = userData._id;
         cardsList.renderItems(cardData);
-        userInfo.setUserInfo({ userName: userData.name, job: userData.about, userID: userData._id });
-        userInfo.setAvatar(userData.avatar);
+        userInfo.setUserInfo({ userName: userData.name, job: userData.about, userID: userData._id, avatarURL: userData.avatar });
     })
     .catch((err) => {
         console.log(err);
@@ -106,12 +108,16 @@ const userInfoPopup = new PopupWithForm({
         userInfoPopup.changeSubmitBtnText("Updating profile information");
         api.editProfile({ userName: data.name, about: data.job })
             .then(res => {
-                userInfo.setUserInfo({ userName: data.name, job: data.job });
-                userInfoPopup.changeSubmitBtnText("Save");
+                console.log("res", res);
+                userInfo.setUserInfo({ userName: res.name, job: res.about, avatar: res.avatar });
+
                 userInfoPopup.close();
             })
             .catch((err) => {
                 console.log(err);
+            })
+            .finally(() => {
+                userInfoPopup.changeSubmitBtnText("Save");
             })
 
 
@@ -126,11 +132,13 @@ const deleteConfirmationPopup = new PopupWithConfirmation({
         api.deleteCard(card.getID())
             .then(res => {
                 card.deleteCard();
-                deleteConfirmationPopup.changeSubmitBtnText("Yes");
                 deleteConfirmationPopup.close();
             })
             .catch(error => {
                 console.log(error);
+            })
+            .finally(() => {
+                deleteConfirmationPopup.changeSubmitBtnText("Yes");
             })
 
 
@@ -151,11 +159,13 @@ const newCardPopup = new PopupWithForm({
                 data._id = res._id;
                 data.owner._id = myID;
                 renderCard(data);
-                newCardPopup.changeSubmitBtnText("Save");
                 newCardPopup.close();
             })
             .catch(error => {
                 console.log(error);
+            })
+            .finally(() => {
+                newCardPopup.changeSubmitBtnText("Save");
             })
     }
 });
@@ -168,7 +178,6 @@ const changeAvatarPopup = new PopupWithForm({
             .then(res => {
                 if (res.avatar === data.link) {
                     userInfo.setAvatar(data.link);
-                    changeAvatarPopup.changeSubmitBtnText("Save");
                     changeAvatarPopup.close();
                 } else {
                     reject("Error changing Avatar image");
@@ -180,7 +189,6 @@ const changeAvatarPopup = new PopupWithForm({
             })
             .finally(res => {
                 changeAvatarPopup.changeSubmitBtnText("Save");
-                changeAvatarPopup.close();
             })
 
     }

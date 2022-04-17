@@ -57,11 +57,11 @@ class Card {
         this.setLikeIcon();
 
         this._likeButton.addEventListener('click', () => {
-            this.isLikedByMe = !this.isLikedByMe;
+            // this.isLikedByMe = !this.isLikedByMe;
             if (this.isLikedByMe) {
-                this._handleLike(this);
-            } else {
                 this._handleUnlike(this);
+            } else {
+                this._handleLike(this);
             }
         });
 
@@ -78,6 +78,9 @@ class Card {
         } else {
             this._likeButton.classList.remove("element__like-toggle-active");
         }
+    }
+    updateLikesCount(newCount) {
+        this.likesCount.textContent = newCount;
     }
     generateCard(canDelete, myID) {
         this._myID = myID;

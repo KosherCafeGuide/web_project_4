@@ -13,12 +13,11 @@
          return user;
      }
 
-     setUserInfo({ userName, job, userID }) {
-         //Setting the avatar image here would make sense 
-         //if the form for updating the userName and ID also updated the avatar. But it doesn't!
+     setUserInfo({ userName, job, userID, avatarURL }) {
          this.nameElement.textContent = userName;
          this.jobElement.textContent = job;
          this.userID = userID;
+         this.avatarElement.style.backgroundImage = `url(${avatarURL})`
      }
      getUserID() {
          return this.userID;

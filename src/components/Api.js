@@ -49,13 +49,12 @@ class API {
         return this._customFetch(`${this.baseURL}/cards/${cardID}`, "DELETE")
     }
 
-    /*Not used yet*/
+
     getLikesCount(cardID) {
-            return fetch(`${this.baseURL}/cards${cardID}`, {
-                    headers: this.headers
-                })
-                .then(this._checkResponse)
+            console.log("getLikesCount cardID ", cardID);
+            return this._customFetch(`${this.baseURL}/cards/likes/${cardID}`, "GET")
                 .then((result) => {
+                    console.log("result", result);
                     return result.likes.length;
                 });
         }
