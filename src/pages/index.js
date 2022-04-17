@@ -109,7 +109,7 @@ const userInfoPopup = new PopupWithForm({
         api.editProfile({ userName: data.name, about: data.job })
             .then(res => {
                 console.log("res", res);
-                userInfo.setUserInfo({ userName: res.name, job: res.about, avatar: res.avatar });
+                userInfo.setUserInfo({ userName: res.name, job: res.about, avatarURL: res.avatar });
 
                 userInfoPopup.close();
             })
