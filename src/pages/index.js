@@ -108,7 +108,7 @@ const userInfoPopup = new PopupWithForm({
         userInfoPopup.changeSubmitBtnText("Updating profile information");
         api.editProfile({ userName: data.name, about: data.job })
             .then(res => {
-                userInfo.setUserInfo({ userName: res.name, job: res.about, avatarURL: res.avatar });
+                userInfo.setUserInfo({ userName: res.name, job: res.about, userID: res._id, avatarURL: res.avatar });
 
                 userInfoPopup.close();
             })
