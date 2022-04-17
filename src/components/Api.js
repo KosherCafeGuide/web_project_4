@@ -51,10 +51,8 @@ class API {
 
 
     getLikesCount(cardID) {
-            console.log("getLikesCount cardID ", cardID);
             return this._customFetch(`${this.baseURL}/cards/likes/${cardID}`, "GET")
                 .then((result) => {
-                    console.log("result", result);
                     return result.likes.length;
                 });
         }
